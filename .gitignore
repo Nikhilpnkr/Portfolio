@@ -45,3 +45,6 @@ next-env.d.ts
 PLAN_A_portfolio.md
 claims.md
 .claude/
+
+.vercel
+.env*.local
