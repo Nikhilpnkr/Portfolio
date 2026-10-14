@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const ogSize = { width: 1200, height: 630 };
 
-// Shared Open Graph card: teal background, eyebrow, title and footer line.
+// Shared Open Graph card: ink-violet background, eyebrow, title and footer line.
 export function renderOgCard({ eyebrow, title, footer, mark = "DL" }: { eyebrow: string; title: string; footer: string; mark?: string }) {
   return new ImageResponse(
     (
@@ -14,7 +14,7 @@ export function renderOgCard({ eyebrow, title, footer, mark = "DL" }: { eyebrow:
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "linear-gradient(135deg, #0f4c5c 0%, #0b3a47 60%, #072a33 100%)",
+          background: "linear-gradient(135deg, #2a1670 0%, #160c3d 60%, #09080f 100%)",
           color: "#ffffff",
           fontFamily: "sans-serif",
         }}
@@ -26,7 +26,7 @@ export function renderOgCard({ eyebrow, title, footer, mark = "DL" }: { eyebrow:
               height: 64,
               borderRadius: 14,
               background: "#ffffff",
-              color: "#0f4c5c",
+              color: "#2a1670",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

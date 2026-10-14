@@ -7,7 +7,7 @@ const base =
 export const buttonStyles = {
   primary: `${base} btn-primary text-primary-fg`,
   secondary: `${base} border border-border bg-surface text-fg hover:border-primary hover:text-accent`,
-  invertedPrimary: `${base} bg-white text-[#0f4c5c] shadow-lg shadow-black/20 hover:bg-white/90`,
+  invertedPrimary: `${base} bg-white text-[#2a1670] shadow-lg shadow-black/20 hover:bg-white/90`,
   invertedSecondary: `${base} border border-white/40 text-white hover:bg-white/10`,
 };
 

@@ -12,11 +12,14 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 export function SectionHeading({
   eyebrow,
   title,
+  accent,
   intro,
   id,
 }: {
   eyebrow?: string;
   title: string;
+  // Second line of the heading, set in the gradient accent.
+  accent?: string;
   intro?: ReactNode;
   id?: string;
 }) {
@@ -25,6 +28,7 @@ export function SectionHeading({
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <h2 id={id} className="mt-2 text-3xl font-bold tracking-[-0.025em] text-balance text-fg sm:text-4xl">
         {title}
+        {accent ? <span className="heading-accent block">{accent}</span> : null}
       </h2>
       {intro ? <p className="mt-4 text-lg leading-relaxed text-pretty text-fg-muted">{intro}</p> : null}
     </div>

@@ -94,6 +94,7 @@ export function ProjectShowcase({ items, header }: { items: Item[]; header?: Rea
                 style={{ "--tone": item.accent } as React.CSSProperties}
                 className="showcase-tab rounded-full border px-4 py-2 text-sm font-semibold transition-colors"
               >
+                <span className="mr-1.5 tabular-nums opacity-60">{String(i + 1).padStart(2, "0")}</span>
                 {item.label}
               </button>
             ))}

@@ -4,18 +4,66 @@ import Link from "next/link";
 import { postalAddress, profile, skills, SITE_URL } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { packages } from "@/content/packages";
-import { Container, SectionHeading, Chip } from "@/components/ui";
+import { Container, SectionHeading } from "@/components/ui";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectShowcase } from "@/components/project-showcase";
 import { StackHero } from "@/components/stack-hero";
+import { Marquee } from "@/components/marquee";
 import { ContactButtons, buttonStyles } from "@/components/contact-buttons";
 import { ContactSection } from "@/components/contact-section";
+import { TrackedLink } from "@/components/tracked-link";
 import { ArrowRightIcon } from "@/components/icons";
 import { JsonLd } from "@/components/json-ld";
+import { whatsappLink } from "@/content/profile";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
+
+const heroStats = [
+  { value: "3", label: "live products", accent: "#8b6cf6" },
+  { value: "1,000+", label: "pharmacy orders a month", accent: "#0e8a86" },
+  { value: "Large-scale", label: "warehouse run on GrainFlow", accent: "#1f7ae0" },
+  { value: "72 acres", label: "of farm on one app", accent: "#3d8a4f" },
+];
+
+const roles = [
+  "Full-stack developer",
+  "Product builder",
+  "Operations lead",
+  "Web apps",
+  "Online stores",
+  "Android apps",
+  "Hyderabad",
+];
+
+// Newest first. Only dates and facts confirmed for the claims ledger.
+const career = [
+  {
+    when: "Now",
+    title: "Running Suprameds, building FarmHeaven",
+    where: "Sole developer and operations lead",
+    body: "Developing the pharmacy platform and using it every day with the team, while building FarmHeaven's next modules.",
+  },
+  {
+    when: "Apr 2026",
+    title: "Started FarmHeaven",
+    where: "Sole developer",
+    body: "A farm management platform and storefront for a 72-acre organic farm, with QR traceability from animal to pack.",
+  },
+  {
+    when: "Mar 2026",
+    title: "Built and launched Suprameds",
+    where: "Sole developer, also lead operations",
+    body: "A licensed online pharmacy on web and Android, with Indian drug regulations enforced in code. Now handling 1,000+ orders a month.",
+  },
+  {
+    when: "Dec 2025",
+    title: "Built GrainFlow",
+    where: "Freelance, for Sri Lakshmi Warehouse",
+    body: "A multi-tenant warehouse SaaS with automated rent billing, a farmer portal, Razorpay payments and an Android app.",
+  },
+];
 
 const steps = [
   {
@@ -40,38 +88,9 @@ const steps = [
   },
 ];
 
-const heroStats = [
-  { value: "3", label: "live products", accent: "#0f4c5c" },
-  { value: "1,000+", label: "pharmacy orders a month", accent: "#0e8a86" },
-  { value: "Large-scale", label: "warehouse run on GrainFlow", accent: "#1f7ae0" },
-  { value: "72 acres", label: "of farm on one app", accent: "#3d8a4f" },
-];
-
-const now = [
-  {
-    label: "Now",
-    title: "Running operations at Suprameds",
-    body: "Developing the platform and using it every day with the pharmacy team.",
-    href: "/work/suprameds",
-    accent: "#0e8a86",
-  },
-  {
-    label: "Building",
-    title: "FarmHeaven's next modules",
-    body: "Flocks and crops for the farmer console, after the livestock registry.",
-    href: "/work/farmheaven",
-    accent: "#3d8a4f",
-  },
-  {
-    label: "Open to",
-    title: "Freelance projects and full-stack roles",
-    body: "Websites, online stores and apps for businesses, or a full-stack team to join.",
-    href: "/services",
-    accent: "#d97706",
-  },
-];
-
 export default function HomePage() {
+  const hire = whatsappLink(profile.freeCall.message);
+
   return (
     <>
       <JsonLd
@@ -90,71 +109,77 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <Container className="relative grid items-center gap-4 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:py-24 xl:py-28">
+        <Container className="relative grid items-center gap-4 pt-12 pb-10 sm:pt-16 lg:grid-cols-[1.15fr_1fr] lg:pt-20 xl:pt-24">
           <div>
-          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs font-medium text-fg-muted">
-            <span className="relative flex size-2" aria-hidden="true">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#1fa855] opacity-60 motion-reduce:hidden" />
-              <span className="relative inline-flex size-2 rounded-full bg-[#1fa855]" />
-            </span>
-            {profile.availability} First call is free.
-          </p>
-          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.05] font-bold tracking-[-0.035em] text-fg sm:text-5xl xl:text-7xl">
-            I build and run production web apps for Indian businesses.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted xl:text-xl">
-            {profile.proof} Based in Hyderabad.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <ContactButtons
-              location="hero"
-              message={profile.freeCall.message}
-              whatsappLabel={profile.freeCall.label}
-            />
-            <Link href="/work" className={buttonStyles.secondary}>
-              See my work
-            </Link>
+            <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1 text-xs font-medium text-fg-muted">
+              <span className="relative flex size-2" aria-hidden="true">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#22c55e] opacity-60 motion-reduce:hidden" />
+                <span className="relative inline-flex size-2 rounded-full bg-[#22c55e]" />
+              </span>
+              {profile.availability} First call is free.
+            </p>
+            <p className="mt-8 text-xl font-medium text-fg-muted sm:text-2xl">Hello! I&apos;m</p>
+            <h1 className="hero-name mt-1">
+              <span className="block">Nikhil</span>
+              <span className="block">Kumar</span>
+              <span className="sr-only">, full-stack developer in Hyderabad</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-fg-muted xl:text-xl">
+              A full-stack developer who builds <strong className="font-semibold text-fg">and runs</strong> production
+              web apps for Indian businesses, from a licensed online pharmacy to multi-tenant SaaS.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ContactButtons
+                location="hero"
+                message={profile.freeCall.message}
+                whatsappLabel={profile.freeCall.label}
+              />
+              <Link href="/work" className={buttonStyles.secondary}>
+                See my work
+              </Link>
+            </div>
           </div>
-          <dl className="mt-10 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 sm:grid-cols-4">
+          <StackHero />
+        </Container>
+
+        <Container>
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border py-6 sm:grid-cols-4">
             {heroStats.map((stat) => (
               <div key={stat.label} style={{ "--card-accent": stat.accent } as React.CSSProperties}>
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
-                  <span className="metric-value block text-2xl font-bold tracking-tight xl:text-3xl">{stat.value}</span>
-                  <span className="mt-1 block text-xs leading-snug text-fg-muted" aria-hidden="true">
+                  <span className="metric-value block text-3xl font-bold tracking-tight xl:text-4xl">{stat.value}</span>
+                  <span className="mt-1 block text-sm leading-snug text-fg-muted" aria-hidden="true">
                     {stat.label}
                   </span>
                 </dd>
               </div>
             ))}
           </dl>
-          </div>
-          <StackHero />
         </Container>
       </section>
 
-      {/* Now */}
-      <section aria-label="What I'm doing now" className="pb-8">
+      <Marquee items={roles} />
+
+      {/* Career */}
+      <section aria-labelledby="career-heading" className="py-24">
         <Container>
-          <ul className="grid gap-3 md:grid-cols-3">
-            {now.map((item) => (
-              <li key={item.label}>
-                <Link
-                  href={item.href}
-                  style={{ "--tone": item.accent } as React.CSSProperties}
-                  className="now-card group flex h-full flex-col rounded-2xl border p-5 transition-colors"
-                >
-                  <span className="tone-heading flex items-center gap-2 text-xs font-bold">
-                    <span className="tone-dot size-1.5 rounded-full" aria-hidden="true" />
-                    {item.label}
-                  </span>
-                  <span className="mt-2 font-semibold text-fg">{item.title}</span>
-                  <span className="mt-1 text-sm leading-relaxed text-fg-muted">{item.body}</span>
-                  <ArrowRightIcon className="mt-3 size-4 text-fg-subtle transition-transform group-hover:translate-x-1" />
-                </Link>
+          <div className="mx-auto max-w-2xl text-center [&>div]:mx-auto">
+            <SectionHeading id="career-heading" title="My career &" accent="experience" />
+          </div>
+          <ol className="timeline relative mx-auto mt-16 max-w-4xl">
+            {career.map((item, i) => (
+              <li key={item.when} className={`timeline-item ${i % 2 ? "timeline-right" : "timeline-left"}`}>
+                <span className="timeline-node" aria-hidden="true" />
+                <div className="timeline-card rounded-2xl border p-6">
+                  <p className="timeline-when text-sm font-bold">{item.when}</p>
+                  <h3 className="mt-2 text-xl font-semibold tracking-tight text-fg">{item.title}</h3>
+                  <p className="mt-1 text-sm font-medium text-fg-subtle">{item.where}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-fg-muted">{item.body}</p>
+                </div>
               </li>
             ))}
-          </ul>
+          </ol>
         </Container>
       </section>
 
@@ -165,9 +190,9 @@ export default function HomePage() {
             <Container>
               <SectionHeading
                 id="work-heading"
-                eyebrow="Selected work"
-                title="Real products, live on the web"
-                intro="No mock-ups. You can open every one of these right now."
+                title="My"
+                accent="work"
+                intro="Real products, live on the web. You can open every one of these right now."
               />
             </Container>
           }
@@ -181,14 +206,14 @@ export default function HomePage() {
       </section>
 
       {/* Services teaser */}
-      <section aria-labelledby="services-heading" className="border-y border-border bg-bg-subtle/70 py-20">
+      <section aria-labelledby="services-heading" className="border-y border-border bg-bg-subtle/60 py-20">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
               id="services-heading"
-              eyebrow="For businesses"
-              title="What I can build for you"
-              intro="Fixed packages with clear prices. Tell me what you need on WhatsApp and I'll reply with a plan."
+              title="What I can"
+              accent="build for you"
+              intro="Fixed packages with clear prices. Start with a free call and I'll reply with a plan."
             />
             <Link href="/services" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline">
               All packages <ArrowRightIcon className="size-4" />
@@ -196,9 +221,9 @@ export default function HomePage() {
           </div>
           <ul className="mt-10 grid gap-4 sm:grid-cols-3">
             {packages.slice(0, 3).map((pkg) => (
-              <li key={pkg.name} className="rounded-xl border border-border bg-surface p-5">
+              <li key={pkg.name} className="package-card rounded-2xl border border-border bg-surface/80 p-6">
                 <p className="font-semibold text-fg">{pkg.name}</p>
-                <p className="mt-1 text-2xl font-bold tracking-tight text-accent">{pkg.price}</p>
+                <p className="mt-2 text-3xl font-bold tracking-tight text-accent">{pkg.price}</p>
                 {pkg.note ? <p className="mt-1 text-sm text-fg-subtle">{pkg.note}</p> : null}
                 <p className="mt-3 text-sm leading-relaxed text-fg-muted">{pkg.summary}</p>
               </li>
@@ -207,46 +232,69 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Skills */}
-      <section aria-labelledby="skills-heading" className="py-20">
-        <Container>
-          <SectionHeading
-            id="skills-heading"
-            eyebrow="Skills"
-            title="What I work with"
-            intro="Only tools I've used in production on the projects above."
-          />
-          <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Tech stack */}
+      <section aria-labelledby="stack-heading" className="stack-wall-section relative overflow-hidden py-24">
+        <div className="stack-wall-glow" aria-hidden="true" />
+        <Container className="relative">
+          <h2 id="stack-heading" className="stack-wall-title text-center">
+            Tech stack
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-center text-lg text-fg-muted">
+            Only tools I&apos;ve used in production on the projects above.
+          </p>
+          <ul className="mx-auto mt-6 flex max-w-3xl flex-wrap justify-center gap-x-5 gap-y-2" aria-label="Groups">
             {skills.map((s) => (
-              <div
+              <li
                 key={s.group}
                 style={{ "--tone": s.tone } as React.CSSProperties}
-                className="tone-panel rounded-2xl border p-5"
+                className="tone-heading flex items-center gap-2 text-sm font-semibold"
               >
-                <dt className="tone-heading flex items-center gap-2 text-sm font-bold">
-                  <span className="tone-dot size-2 rounded-full" aria-hidden="true" />
-                  {s.group}
-                </dt>
-                <dd className="mt-3 flex flex-wrap gap-1.5">
-                  {s.items.map((item) => (
-                    <Chip key={item} tone={s.tone}>
-                      {item}
-                    </Chip>
-                  ))}
-                </dd>
-              </div>
+                <span className="tone-dot size-2 rounded-full" aria-hidden="true" />
+                {s.group}
+              </li>
             ))}
-          </dl>
+          </ul>
+          <ul className="stack-wall mx-auto mt-12 flex max-w-5xl flex-wrap justify-center gap-3" aria-label="Tools">
+            {skills.flatMap((s) =>
+              s.items.map((item) => (
+                <li
+                  key={`${s.group}-${item}`}
+                  style={{ "--tone": s.tone } as React.CSSProperties}
+                  className="stack-tile grid min-h-20 min-w-24 place-items-center rounded-xl border px-4 py-3 text-center text-xs font-semibold"
+                  title={s.group}
+                >
+                  {item}
+                </li>
+              )),
+            )}
+          </ul>
+          <div className="mt-14 flex flex-wrap justify-center gap-3">
+            <Link href="/work" className={buttonStyles.secondary}>
+              See my work <ArrowRightIcon className="size-4" />
+            </Link>
+            {hire ? (
+              <TrackedLink
+                href={hire}
+                target="_blank"
+                rel="noopener noreferrer"
+                event="whatsapp_click"
+                location="stack-hire"
+                className={buttonStyles.primary}
+              >
+                Hire me <ArrowRightIcon className="size-4" />
+              </TrackedLink>
+            ) : null}
+          </div>
         </Container>
       </section>
 
       {/* How it works */}
-      <section aria-labelledby="how-heading" className="pb-20">
+      <section aria-labelledby="how-heading" className="py-20">
         <Container>
           <SectionHeading
             id="how-heading"
-            eyebrow="How it works"
-            title="From first message to live site"
+            title="From first message"
+            accent="to live site"
             intro="Four steps, and you always know what happens next."
           />
           <ol className="process mt-12 grid gap-8 md:grid-cols-4 md:gap-6">

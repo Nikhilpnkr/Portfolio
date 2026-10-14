@@ -8,6 +8,7 @@ import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { Analytics } from "@/components/analytics";
 import { themeScript } from "@/components/theme";
 import { SiteBackground } from "@/components/site-background";
+import { IntroLoader, introSkipScript } from "@/components/intro-loader";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -38,18 +39,20 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b1114" },
+    { media: "(prefers-color-scheme: light)", color: "#f1eff6" },
+    { media: "(prefers-color-scheme: dark)", color: "#09080f" },
   ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-IN" data-theme="light" className={`${inter.variable} antialiased`} suppressHydrationWarning>
+    <html lang="en-IN" data-theme="dark" className={`${inter.variable} antialiased`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: introSkipScript }} />
       </head>
       <body className="flex min-h-dvh flex-col font-sans">
+        <IntroLoader />
         <SiteBackground />
         <a
           href="#main"
