@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Design tokens. Primary teal #0f4c5c; a lighter tint carries the brand in dark mode. */
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f6f8f8;
+  --surface: #ffffff;
+  --fg: #111827;
+  --fg-muted: #4b5563;
+  --fg-subtle: #6b7280;
+  --border: #e5e7eb;
+  --primary: #0f4c5c;
+  --primary-hover: #0b3a47;
+  --primary-fg: #ffffff;
+  --primary-soft: #e6f0f2;
+  --accent-text: #0f4c5c;
+  --ring: #0f4c5c;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1114;
+  --bg-subtle: #10181c;
+  --surface: #131d22;
+  --fg: #e8eef0;
+  --fg-muted: #a7b4b9;
+  --fg-subtle: #8a989e;
+  --border: #22313a;
+  --primary: #5fb3c4;
+  --primary-hover: #7cc4d2;
+  --primary-fg: #06242c;
+  --primary-soft: #12303a;
+  --accent-text: #7cc4d2;
+  --ring: #7cc4d2;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent-text);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Long-form case study typography */
+.prose-case h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+}
+.prose-case h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+.prose-case p,
+.prose-case li {
+  color: var(--fg-muted);
+  line-height: 1.75;
+}
+.prose-case p {
+  margin-bottom: 1rem;
+}
+.prose-case ul {
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.prose-case li {
+  margin-bottom: 0.375rem;
+}
+.prose-case strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+.prose-case code {
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+}
+.prose-case a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media print {
+  [data-print-hide] {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+}

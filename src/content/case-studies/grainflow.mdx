@@ -1,0 +1,57 @@
+import home from "../../../public/work/grainflow-home.png";
+import dashboard from "../../../public/work/grainflow-dashboard.png";
+
+## The problem
+
+Agricultural warehouses in India store grain for many farmers and traders at once, often across thousands of bags and multiple lots. Most still run on paper ledgers. Working out rent by storage duration, tracking part-withdrawals and chasing dues by hand is slow and causes disputes.
+
+The client wanted software that one warehouse could run on day one, and that could be sold to many warehouses as a subscription.
+
+## What I built
+
+I built GrainFlow as a **freelance project for a client**: a multi-tenant SaaS where each warehouse sees only its own data.
+
+- **Multi-tenant model**: warehouses, users and roles (Super Admin, Owner, Admin, Manager, Staff), with tenant isolation enforced in PostgreSQL row-level security.
+- **Inventory**: inflow and outflow per customer, commodity and lot, QR code labels, and bulk outflow with FIFO or manual per-record allocation.
+- **Billing engine**: rent calculated automatically from storage duration, on 6-month and yearly cycles, plus hamali (labour) charges that settle automatically when a record is closed.
+- **Payments**: bulk payment allocation across records, and Razorpay payment links sent by SMS and confirmed through verified webhooks.
+- **Farmer portal**: farmers and traders log in with a one-time code sent to their phone, then check stock, payments and statements (PDF or Excel) without calling the warehouse.
+- **Android app** packaged with Capacitor from the same codebase.
+- **SaaS plumbing**: subscription plans, activation codes for offline sales, audit logs, analytics dashboards and Sentry monitoring.
+- **Quality**: TypeScript strict mode, Zod validation on every form, and more than **350 automated tests** with Vitest, plus Playwright end-to-end specs.
+
+<Figure src={home} alt="GrainFlow landing page: smart inventory for modern agriculture" caption="The public site at grainflow.vercel.app." />
+
+## Hard problems I solved
+
+<Problem title="1. Tenant isolation that holds everywhere">
+
+Every table that the API can reach needs its own row filter. A single helper function, `belongs_to_warehouse()`, backs every RLS policy, so the rule lives in one place.
+
+The tricky part was performance. Materialized views can't carry RLS, so I revoked direct access to them and exposed them only through views and functions that are gated on the same check. Reports stay fast, and one warehouse can never read another's balances.
+
+</Problem>
+
+<Problem title="2. A billing engine people trust">
+
+Rent depends on how long each bag stays, which billing cycle applies, and partial withdrawals along the way. Getting it wrong by even a little starts arguments with farmers.
+
+I isolated the calculation in one billing service and covered it with tests for multi-year storage and other edge cases, so every change to the rules is checked against known answers.
+
+</Problem>
+
+<Problem title="3. Keeping stock and money consistent">
+
+Bulk payments are split across many records, and bulk outflows take bags from many lots. A half-finished update would leave the books wrong.
+
+Payment allocation runs as a single **atomic database function**. Lot stock is recalculated by a **database trigger** whenever a storage record changes, so the numbers on screen always match the underlying records.
+
+</Problem>
+
+## Screenshots
+
+<Figure src={dashboard} alt="GrainFlow dashboard showing active records, occupancy and shortcuts to inflow, outflow, storage, payments, customers, reports and expenses" caption="Warehouse dashboard (demo data)." />
+
+## How the engagement worked
+
+The client brought the domain knowledge: how warehouses charge rent and what farmers and staff need. I turned that into the product, deployed it on Vercel, and have kept shipping improvements in regular releases since December 2025.

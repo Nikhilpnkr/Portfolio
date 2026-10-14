@@ -1,0 +1,60 @@
+// Single source of truth for personal details. Pages, metadata, JSON-LD and
+// resumes all read from here. Every claim must also appear in content/claims.md.
+
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://nikhilpnkr.vercel.app";
+
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
+
+export const profile = {
+  name: "Nikhil Kumar",
+  shortName: "Nikhil",
+  location: "Hyderabad, India",
+  role: "Full-stack developer",
+  pitch:
+    "I build and run production web apps for Indian businesses, from a licensed online pharmacy to multi-tenant SaaS.",
+  proof:
+    "Sole developer of Suprameds, a live online pharmacy, and builder of GrainFlow, a multi-tenant warehouse SaaS.",
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "nikhilpnkr@gmail.com",
+  // Digits only, with country code, e.g. 919876543210. Empty hides WhatsApp buttons.
+  whatsapp: whatsappNumber.replace(/\D/g, ""),
+  github: "https://github.com/Nikhilpnkr",
+  availability: "Open to freelance projects and full-stack roles.",
+  freelanceUrl: process.env.NEXT_PUBLIC_FREELANCE_URL ?? "",
+} as const;
+
+export const skills: { group: string; items: string[] }[] = [
+  {
+    group: "Frontend",
+    items: ["TypeScript", "React 19", "Next.js", "TanStack Start", "Tailwind CSS"],
+  },
+  {
+    group: "Backend",
+    items: ["Node.js", "Medusa.js v2", "Server actions", "REST APIs", "Webhooks"],
+  },
+  {
+    group: "Data",
+    items: ["PostgreSQL", "Supabase (Auth, RLS, Storage)", "Redis", "Zod"],
+  },
+  {
+    group: "Mobile",
+    items: ["Capacitor (Android)", "PWA", "SMS OTP login"],
+  },
+  {
+    group: "Payments & messaging",
+    items: ["Razorpay", "Paytm", "Cash on delivery", "SMS / email notifications"],
+  },
+  {
+    group: "Quality & ops",
+    items: ["Vitest", "Jest", "Playwright", "GitHub Actions", "Docker", "Sentry", "Vercel", "Railway"],
+  },
+];
+
+export function whatsappLink(message: string) {
+  if (!profile.whatsapp) return "";
+  return `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(message)}`;
+}
+
+export function mailtoLink(subject: string) {
+  return `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
+}

@@ -1,0 +1,62 @@
+import home from "../../../public/work/suprameds-home.png";
+import phoneHome from "../../../public/work/suprameds-phone-01-home.png";
+import phoneCatalog from "../../../public/work/suprameds-phone-02-catalog.png";
+import phoneRx from "../../../public/work/suprameds-phone-04-upload-rx.png";
+
+## The problem
+
+Generic medicines in India often cost a fraction of their branded equivalents, but buying them online means trusting a pharmacy with prescriptions and health data. A licensed online pharmacy also has to follow the Drugs & Cosmetics Rules, the NDPS Act, drug price controls (DPCO) and the DPDP Act. Off-the-shelf store builders don't model any of that.
+
+Suprameds needed a store that customers would trust, and that also enforced the regulations itself, instead of relying on staff to remember them.
+
+## What I built and own
+
+I'm the **sole developer** of Suprameds, and I also **lead operations**, so I use the admin tools I build every day. I own the whole stack, from the database to the Android app:
+
+- **Commerce backend** on Medusa.js v2, extended with **18 custom domain modules**: prescriptions, dispensing, batch inventory, RBAC, compliance, COD, loyalty, CRM, shipments, analytics and more.
+- **Storefront** built with TanStack Start (React 19, server-rendered), with structured data for SEO, OTP login and a PWA service worker.
+- **Android app** from the same codebase using Capacitor, with one-tap SMS OTP autofill.
+- **Prescription workflow**: upload, pharmacist review, linking prescriptions to orders, and mandatory pharmacist sign-off before Schedule H/H1 orders can be dispatched.
+- **Operations tooling** in the admin dashboard: goods receipt (GRN), the H1 register, dispensing, purchases, pincode serviceability, analytics, and COD risk scoring.
+- **Integrations**: AfterShip tracking, transactional email, DLT-registered SMS OTP, push notifications, and Razorpay and Paytm payment providers alongside cash on delivery.
+- **Delivery pipeline**: CI runs type-checks, lint, unit tests, both production builds, a dependency audit and a Docker build on every push. The site is hosted on Railway in Docker, with storage behind Cloudflare.
+
+<Figure src={home} alt="Suprameds homepage on desktop: generic medicines at 50 to 80 percent off, with medicine search and prescription upload" caption="The storefront at supracyn.in." />
+
+## Hard problems I solved
+
+<Problem title="1. Making compliance impossible to bypass">
+
+Rules like "never sell Schedule X drugs online", "no promotions on prescription items" and "a pharmacist signs off every Schedule H/H1 order before dispatch" can't depend on someone remembering them.
+
+I put them into **workflow hooks** in the backend. They run whether an order comes from the website, the Android app or the admin panel. A blocked order fails with a clear reason instead of slipping through. The H1 register, DPDP consent records and PHI audit logs are kept automatically as a side effect of normal operations.
+
+</Problem>
+
+<Problem title="2. Batch-level stock that respects expiry and price ceilings">
+
+Medicines are sold by batch, and each batch has its own expiry date and MRP. I built batch inventory with **FEFO allocation** (first expiry, first out), lot and expiry tracking, goods receipts and recall support.
+
+Scheduled jobs flag stock that is close to expiry. Price checks make sure an item is never sold above the MRP of any batch it could be dispensed from.
+
+</Problem>
+
+<Problem title="3. Access control for a real pharmacy team">
+
+A pharmacy team has people in very different jobs, and some combinations of actions should never rest with one person.
+
+I built role-based access with **25 roles and around 65 permissions** in a `resource:action` format, plus separation-of-duties checks. Each staff member sees and does only what their job needs.
+
+</Problem>
+
+## Screenshots
+
+<PhoneRow>
+  <Figure phone src={phoneHome} alt="Suprameds Android app home screen" caption="Android app: home" />
+  <Figure phone src={phoneCatalog} alt="Suprameds Android app medicine catalogue" caption="Catalogue" />
+  <Figure phone src={phoneRx} alt="Suprameds prescription upload screen explaining pharmacist review" caption="Prescription upload" />
+</PhoneRow>
+
+## What I'd do next
+
+Turn on online payments in the checkout (the Razorpay and Paytm providers are already built and tested on the backend), and keep growing the catalogue and operations dashboards based on what the team needs day to day.
