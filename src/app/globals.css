@@ -737,7 +737,7 @@ body {
   place-items: center;
   background: var(--bg);
   overflow: hidden;
-  animation: intro-out 0.55s cubic-bezier(0.7, 0, 0.3, 1) 1.15s forwards;
+  animation: intro-out 0.45s cubic-bezier(0.7, 0, 0.3, 1) 0.6s forwards;
 }
 .intro-seen .intro {
   display: none;
@@ -803,7 +803,7 @@ body {
   min-width: 3.5ch;
   color: rgb(255 255 255 / 0.6);
   font-variant-numeric: tabular-nums;
-  animation: intro-count 1.05s ease-out forwards;
+  animation: intro-count 0.55s ease-out forwards;
 }
 .intro-count::after {
   content: counter(p) "%";
@@ -851,7 +851,7 @@ body {
   text-transform: uppercase;
   white-space: nowrap;
   color: transparent;
-  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--fg) 35%, transparent);
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--fg) 70%, transparent);
 }
 .marquee-item:nth-child(3n + 2) {
   color: var(--fg);
