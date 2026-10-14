@@ -569,14 +569,14 @@ body {
   background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 7%, var(--surface)), var(--surface) 70%);
 }
 .tone-heading {
-  color: color-mix(in srgb, var(--tone) 80%, black);
+  color: color-mix(in srgb, var(--tone) 72%, black);
 }
 .tone-dot {
   background: var(--tone);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--tone) 18%, transparent);
 }
 .tone-chip {
-  color: color-mix(in srgb, var(--tone) 78%, black);
+  color: color-mix(in srgb, var(--tone) 68%, black);
   border-color: color-mix(in srgb, var(--tone) 28%, transparent);
   background: color-mix(in srgb, var(--tone) 9%, var(--surface));
 }
@@ -636,7 +636,7 @@ body {
 }
 .showcase-tab[aria-selected="true"] {
   border-color: transparent;
-  background: var(--tone);
+  background: color-mix(in srgb, var(--tone) 78%, black);
   color: #fff;
   box-shadow: 0 8px 20px -10px var(--tone);
 }
