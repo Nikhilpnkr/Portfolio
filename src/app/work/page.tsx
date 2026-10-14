@@ -76,7 +76,7 @@ export default function WorkPage() {
                 <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Tech stack">
                   {p.stack.map((s) => (
                     <li key={s}>
-                      <Chip>{s}</Chip>
+                      <Chip tone={p.accent}>{s}</Chip>
                     </li>
                   ))}
                 </ul>

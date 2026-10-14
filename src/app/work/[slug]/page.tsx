@@ -98,7 +98,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                 <dt className="text-xs font-semibold tracking-wider text-fg-subtle uppercase">Stack</dt>
                 <dd className="mt-2 flex flex-wrap gap-1.5">
                   {project.stack.map((s) => (
-                    <Chip key={s}>{s}</Chip>
+                    <Chip key={s} tone={project.accent}>{s}</Chip>
                   ))}
                 </dd>
               </div>

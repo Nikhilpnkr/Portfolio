@@ -7,9 +7,9 @@
   --bg: #ffffff;
   --bg-subtle: #f6f8f8;
   --surface: #ffffff;
-  --fg: #111827;
-  --fg-muted: #4b5563;
-  --fg-subtle: #6b7280;
+  --fg: #0f1a20;
+  --fg-muted: #3d4a55;
+  --fg-subtle: #5b6873;
   --border: #e5e7eb;
   --primary: #0f4c5c;
   --primary-hover: #0b3a47;
@@ -24,9 +24,9 @@
   --bg: #0b1114;
   --bg-subtle: #10181c;
   --surface: #131d22;
-  --fg: #e8eef0;
-  --fg-muted: #a7b4b9;
-  --fg-subtle: #8a989e;
+  --fg: #eef4f5;
+  --fg-muted: #b8c5ca;
+  --fg-subtle: #94a3a9;
   --border: #22313a;
   --primary: #5fb3c4;
   --primary-hover: #7cc4d2;
@@ -429,13 +429,6 @@ body {
   transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* ---------- Carousel ---------- */
-.carousel {
-  scrollbar-width: none;
-}
-.carousel::-webkit-scrollbar {
-  display: none;
-}
 
 @media (prefers-reduced-motion: reduce) {
   .site-bg-glow,
@@ -450,35 +443,6 @@ body {
   .stack {
     transform: rotateX(58deg) rotateZ(-38deg);
   }
-}
-
-/* ---------- Pinned project scroller ---------- */
-.pinned-carousel .carousel {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-.pinned-carousel .carousel > li {
-  scroll-snap-align: start;
-}
-.pinned-progress {
-  display: none;
-}
-.pinned-carousel[data-pinned="true"] .pinned-carousel-sticky {
-  position: sticky;
-  top: 64px;
-  height: calc(100dvh - 64px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-}
-.pinned-carousel[data-pinned="true"] .carousel {
-  overflow: visible;
-  scroll-snap-type: none;
-  will-change: transform;
-}
-.pinned-carousel[data-pinned="true"] .pinned-progress {
-  display: block;
 }
 
 /* ---------- Colour and depth ---------- */
@@ -597,4 +561,97 @@ body {
     radial-gradient(closest-side at 60% 40%, rgb(95 179 196 / 0.35), transparent),
     radial-gradient(closest-side at 35% 70%, rgb(233 162 59 / 0.22), transparent);
   pointer-events: none;
+}
+
+/* ---------- Toned skill groups ---------- */
+.tone-panel {
+  border-color: color-mix(in srgb, var(--tone) 22%, var(--border));
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 7%, var(--surface)), var(--surface) 70%);
+}
+.tone-heading {
+  color: color-mix(in srgb, var(--tone) 80%, black);
+}
+.tone-dot {
+  background: var(--tone);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--tone) 18%, transparent);
+}
+.tone-chip {
+  color: color-mix(in srgb, var(--tone) 78%, black);
+  border-color: color-mix(in srgb, var(--tone) 28%, transparent);
+  background: color-mix(in srgb, var(--tone) 9%, var(--surface));
+}
+[data-theme="dark"] .tone-panel {
+  border-color: color-mix(in srgb, var(--tone) 30%, var(--border));
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 14%, var(--surface)), var(--surface) 70%);
+}
+[data-theme="dark"] .tone-heading,
+[data-theme="dark"] .tone-chip {
+  color: color-mix(in srgb, var(--tone) 45%, white);
+}
+[data-theme="dark"] .tone-chip {
+  border-color: color-mix(in srgb, var(--tone) 40%, transparent);
+  background: color-mix(in srgb, var(--tone) 16%, var(--surface));
+}
+
+/* ---------- One-at-a-time project showcase ---------- */
+.showcase-stage {
+  display: grid;
+  perspective: 1600px;
+}
+.showcase-panel {
+  grid-area: 1 / 1;
+  transition:
+    opacity 0.6s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    visibility 0.7s;
+}
+.showcase-panel[data-state="before"],
+.showcase-panel[data-state="after"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.showcase-panel[data-state="before"] {
+  transform: translateX(-8%) rotateY(10deg) scale(0.94);
+}
+.showcase-panel[data-state="after"] {
+  transform: translateX(8%) rotateY(-10deg) scale(0.94);
+}
+.showcase[data-pinned="true"] .showcase-sticky {
+  position: sticky;
+  top: 64px;
+  height: calc(100dvh - 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.showcase-tab {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--fg-muted);
+}
+.showcase-tab:hover {
+  border-color: color-mix(in srgb, var(--tone) 45%, var(--border));
+  color: var(--fg);
+}
+.showcase-tab[aria-selected="true"] {
+  border-color: transparent;
+  background: var(--tone);
+  color: #fff;
+  box-shadow: 0 8px 20px -10px var(--tone);
+}
+.showcase-dot {
+  background: var(--border);
+}
+.showcase-dot[data-active="true"] {
+  background: var(--tone);
+}
+@media (prefers-reduced-motion: reduce) {
+  .showcase-panel {
+    transition: none;
+  }
+  .showcase-panel[data-state="before"],
+  .showcase-panel[data-state="after"] {
+    transform: none;
+  }
 }

@@ -50,29 +50,36 @@ export const postalAddress = {
   addressCountry: profile.address.country,
 };
 
-export const skills: { group: string; items: string[] }[] = [
+// Each group has its own hue so readers can scan by area.
+export const skills: { group: string; tone: string; items: string[] }[] = [
   {
     group: "Frontend",
+    tone: "#2563eb",
     items: ["TypeScript", "React 19", "Next.js", "TanStack Start", "Tailwind CSS"],
   },
   {
     group: "Backend",
+    tone: "#7c3aed",
     items: ["Node.js", "Medusa.js v2", "Server actions", "REST APIs", "Webhooks"],
   },
   {
     group: "Data",
+    tone: "#0e8a86",
     items: ["PostgreSQL", "PostGIS", "Supabase (Auth, RLS, Storage)", "Redis", "Zod"],
   },
   {
     group: "Mobile",
+    tone: "#16a34a",
     items: ["Capacitor (Android)", "PWA", "SMS OTP login"],
   },
   {
     group: "Payments & messaging",
+    tone: "#d97706",
     items: ["Razorpay", "Paytm", "Cash on delivery", "SMS / email notifications"],
   },
   {
     group: "Quality & ops",
+    tone: "#db2777",
     items: ["Vitest", "Jest", "Playwright", "GitHub Actions", "Docker", "Sentry", "Vercel", "Railway"],
   },
 ];

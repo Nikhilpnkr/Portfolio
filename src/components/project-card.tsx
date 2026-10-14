@@ -19,11 +19,11 @@ export function ProjectCard({
   return (
     <article
       style={{ "--card-accent": project.accent } as React.CSSProperties}
-      className={`project-card group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface ${wide ? "sm:grid sm:grid-cols-[1.1fr_1fr]" : ""}`}
+      className={`project-card group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface ${wide ? "sm:grid sm:grid-cols-[1.25fr_1fr]" : ""}`}
     >
       <Link
         href={`/work/${project.slug}`}
-        className={`block overflow-hidden border-b border-border bg-bg-subtle ${wide ? "sm:border-r sm:border-b-0" : ""}`}
+        className={`block overflow-hidden border-b border-border bg-bg-subtle ${wide ? "relative sm:min-h-[320px] sm:border-r sm:border-b-0" : ""}`}
         tabIndex={-1}
         aria-hidden="true"
       >
@@ -32,8 +32,8 @@ export function ProjectCard({
           alt=""
           placeholder="blur"
           priority={priority}
-          sizes={wide ? "(min-width: 640px) 36vw, 86vw" : "(min-width: 768px) 33vw, 100vw"}
-          className={`aspect-[16/10] w-full object-cover object-left-top ${wide ? "sm:h-full sm:aspect-auto" : ""}`}
+          sizes={wide ? "(min-width: 640px) 55vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
+          className={`aspect-[16/10] w-full object-cover object-left-top ${wide ? "sm:absolute sm:inset-0 sm:h-full sm:aspect-auto" : ""}`}
         />
       </Link>
       <div className="flex flex-1 flex-col p-6">
@@ -59,7 +59,7 @@ export function ProjectCard({
         <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Tech stack">
           {project.stack.slice(0, 5).map((s) => (
             <li key={s}>
-              <Chip>{s}</Chip>
+              <Chip tone={project.accent}>{s}</Chip>
             </li>
           ))}
         </ul>

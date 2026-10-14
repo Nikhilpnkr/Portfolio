@@ -1,3 +1,4 @@
+import type React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { postalAddress, profile, skills, SITE_URL } from "@/content/profile";
@@ -5,9 +6,8 @@ import { projects } from "@/content/projects";
 import { packages } from "@/content/packages";
 import { Container, SectionHeading, Chip } from "@/components/ui";
 import { ProjectCard } from "@/components/project-card";
-import { ProjectCarousel } from "@/components/project-carousel";
+import { ProjectShowcase } from "@/components/project-showcase";
 import { StackHero } from "@/components/stack-hero";
-import { Tilt } from "@/components/tilt";
 import { ContactButtons, buttonStyles } from "@/components/contact-buttons";
 import { ContactSection } from "@/components/contact-section";
 import { ArrowRightIcon } from "@/components/icons";
@@ -80,8 +80,7 @@ export default function HomePage() {
 
       {/* Work */}
       <section aria-labelledby="work-heading" className="py-12">
-        <ProjectCarousel
-          label="Projects"
+        <ProjectShowcase
           header={
             <Container>
               <SectionHeading
@@ -92,15 +91,13 @@ export default function HomePage() {
               />
             </Container>
           }
-        >
-          {projects.map((p) => (
-            <li key={p.slug} className="w-[min(86vw,420px)] shrink-0 sm:w-[clamp(560px,64vw,1000px)]">
-              <Tilt>
-                <ProjectCard project={p} wide />
-              </Tilt>
-            </li>
-          ))}
-        </ProjectCarousel>
+          items={projects.map((p, i) => ({
+            key: p.slug,
+            label: p.name,
+            accent: p.accent,
+            content: <ProjectCard project={p} wide priority={i === 0} />,
+          }))}
+        />
       </section>
 
       {/* Services teaser */}
@@ -139,13 +136,22 @@ export default function HomePage() {
             title="What I work with"
             intro="Only tools I've used in production on the projects above."
           />
-          <dl className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {skills.map((s) => (
-              <div key={s.group}>
-                <dt className="text-sm font-semibold text-fg">{s.group}</dt>
-                <dd className="mt-2 flex flex-wrap gap-1.5">
+              <div
+                key={s.group}
+                style={{ "--tone": s.tone } as React.CSSProperties}
+                className="tone-panel rounded-2xl border p-5"
+              >
+                <dt className="tone-heading flex items-center gap-2 text-sm font-bold">
+                  <span className="tone-dot size-2 rounded-full" aria-hidden="true" />
+                  {s.group}
+                </dt>
+                <dd className="mt-3 flex flex-wrap gap-1.5">
                   {s.items.map((item) => (
-                    <Chip key={item}>{item}</Chip>
+                    <Chip key={item} tone={s.tone}>
+                      {item}
+                    </Chip>
                   ))}
                 </dd>
               </div>
