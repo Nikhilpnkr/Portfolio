@@ -26,6 +26,10 @@ export const profile = {
   whatsapp: whatsappNumber.replace(/\D/g, ""),
   github: "https://github.com/Nikhilpnkr",
   availability: "Open to freelance projects and full-stack roles.",
+  freeCall: {
+    label: "Book a free 20-min call",
+    message: "Hi Nikhil, I'd like to book a free 20-minute call about a project.",
+  },
   freelanceUrl: process.env.NEXT_PUBLIC_FREELANCE_URL ?? "",
   address: {
     lines: [

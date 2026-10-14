@@ -655,3 +655,40 @@ body {
     transform: none;
   }
 }
+
+/* ---------- Now strip, process, free call ---------- */
+.now-card {
+  border-color: color-mix(in srgb, var(--tone) 22%, var(--border));
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 7%, var(--surface)), color-mix(in srgb, var(--surface) 85%, transparent) 70%);
+}
+.now-card:hover {
+  border-color: color-mix(in srgb, var(--tone) 50%, var(--border));
+}
+[data-theme="dark"] .now-card {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 14%, var(--surface)), var(--surface) 70%);
+}
+.process-num {
+  color: var(--primary-fg);
+  background: linear-gradient(135deg, #136579, var(--primary));
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--primary) 14%, transparent);
+}
+[data-theme="dark"] .process-num {
+  background: linear-gradient(135deg, #7cc4d2, var(--primary));
+}
+@media (min-width: 768px) {
+  .process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 56px;
+    right: -12px;
+    height: 2px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--primary) 45%, transparent), color-mix(in srgb, var(--saffron) 45%, transparent));
+  }
+}
+.free-call {
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+  background:
+    radial-gradient(30rem 12rem at 100% 0%, color-mix(in srgb, var(--saffron) 14%, transparent), transparent 70%),
+    linear-gradient(160deg, var(--primary-soft), var(--surface) 75%);
+}

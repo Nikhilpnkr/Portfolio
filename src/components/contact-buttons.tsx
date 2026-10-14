@@ -19,6 +19,7 @@ type Props = {
   lead?: "whatsapp" | "email";
   // For use on a solid primary-coloured background.
   inverted?: boolean;
+  whatsappLabel?: string;
 };
 
 export function ContactButtons({
@@ -27,6 +28,7 @@ export function ContactButtons({
   subject = "Enquiry from your portfolio",
   lead = "whatsapp",
   inverted = false,
+  whatsappLabel = "WhatsApp me",
 }: Props) {
   const primary = inverted ? buttonStyles.invertedPrimary : buttonStyles.primary;
   const secondary = inverted ? buttonStyles.invertedSecondary : buttonStyles.secondary;
@@ -45,7 +47,7 @@ export function ContactButtons({
           className={whatsappPrimary ? primary : secondary}
         >
           <WhatsAppIcon className="size-4" />
-          WhatsApp me
+          {whatsappLabel}
         </TrackedLink>
       ) : null}
       <TrackedLink

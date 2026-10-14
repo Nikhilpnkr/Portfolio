@@ -1,9 +1,10 @@
 import { Container } from "./ui";
 import { ContactButtons } from "./contact-buttons";
+import { profile } from "@/content/profile";
 
 export function ContactSection({
   title = "Have a project or a role in mind?",
-  body = "Send me a message with what you need, and a rough budget or timeline if you have one.",
+  body = "Start with a free 20-minute call. Tell me what you need, and I'll suggest the simplest way to get there. No commitment.",
   message,
   location = "contact-cta",
 }: {
@@ -21,7 +22,12 @@ export function ContactSection({
           </h2>
           <p className="relative z-10 mt-3 max-w-xl text-white/80">{body}</p>
           <div className="relative z-10 mt-8">
-            <ContactButtons location={location} message={message} inverted />
+            <ContactButtons
+              location={location}
+              message={message ?? profile.freeCall.message}
+              whatsappLabel={profile.freeCall.label}
+              inverted
+            />
           </div>
         </div>
       </Container>

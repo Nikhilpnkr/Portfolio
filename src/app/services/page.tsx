@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { packages, paymentTerms } from "@/content/packages";
 import { postalAddress, profile, SITE_URL, whatsappLink, mailtoLink } from "@/content/profile";
 import { Container, Eyebrow } from "@/components/ui";
-import { buttonStyles } from "@/components/contact-buttons";
+import { buttonStyles, ContactButtons } from "@/components/contact-buttons";
 import { TrackedLink } from "@/components/tracked-link";
 import { ContactSection } from "@/components/contact-section";
 import { JsonLd } from "@/components/json-ld";
@@ -63,7 +63,19 @@ export default function ServicesPage() {
           and I&apos;ll confirm it in writing before any work starts.
         </p>
 
-        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="free-call mt-10 flex flex-col gap-5 rounded-2xl border p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div>
+            <p className="text-sm font-semibold text-accent">Start here</p>
+            <h2 className="mt-1 text-2xl font-bold tracking-tight text-fg">Free 20-minute call</h2>
+            <p className="mt-2 max-w-xl text-fg-muted">
+              Not sure what you need yet? Tell me about your business and I&apos;ll recommend the simplest option that
+              works, with a rough price. No commitment.
+            </p>
+          </div>
+          <ContactButtons location="services-free-call" message={profile.freeCall.message} whatsappLabel={profile.freeCall.label} />
+        </div>
+
+        <ul className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {packages.map((pkg) => {
             const wa = whatsappLink(`Hi Nikhil, I'm interested in the ${pkg.name} package.`);
             return (

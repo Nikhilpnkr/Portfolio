@@ -17,22 +17,57 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const howIWork = [
+const steps = [
   {
-    title: "AI-assisted development",
-    body: "I use modern AI tooling to move faster, and I review, test and own every line that ships.",
+    title: "Free 20-minute call",
+    body: "Tell me about your business and what you want customers to do. I'll suggest the simplest thing that works.",
+    get: "A clear recommendation, even if it isn't me",
   },
   {
-    title: "Short iterations",
-    body: "You get a working preview link early and see progress every week, not just at the end.",
+    title: "Plan and fixed quote",
+    body: "A written scope with a fixed price and timeline, so there are no surprises later.",
+    get: "Quote in writing. 50% upfront by UPI",
   },
   {
-    title: "Built to run",
-    body: "Type-checked, tested and deployed with CI. I run a production pharmacy myself, so I build for the day after launch.",
+    title: "Build with weekly previews",
+    body: "You get a live preview link early and see real progress every week.",
+    get: "A link you can open on your phone",
   },
   {
-    title: "Simple terms",
-    body: "Clear fixed packages, 50% upfront by UPI and 50% on delivery.",
+    title: "Launch and care",
+    body: "I put it live, hand over everything, and can keep it updated on the monthly care plan.",
+    get: "Your site live. 50% on delivery",
+  },
+];
+
+const heroStats = [
+  { value: "3", label: "live products", accent: "#0f4c5c" },
+  { value: "500+", label: "pharmacy orders handled", accent: "#0e8a86" },
+  { value: "20,000", label: "warehouse bags managed", accent: "#1f7ae0" },
+  { value: "72 acres", label: "of farm on one app", accent: "#3d8a4f" },
+];
+
+const now = [
+  {
+    label: "Now",
+    title: "Running operations at Suprameds",
+    body: "Developing the platform and using it every day with the pharmacy team.",
+    href: "/work/suprameds",
+    accent: "#0e8a86",
+  },
+  {
+    label: "Building",
+    title: "FarmHeaven's next modules",
+    body: "Flocks and crops for the farmer console, after the livestock registry.",
+    href: "/work/farmheaven",
+    accent: "#3d8a4f",
+  },
+  {
+    label: "Open to",
+    title: "Freelance projects and full-stack roles",
+    body: "Websites, online stores and apps for businesses, or a full-stack team to join.",
+    href: "/services",
+    accent: "#d97706",
   },
 ];
 
@@ -57,9 +92,12 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <Container className="relative grid items-center gap-4 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:py-24 xl:py-28">
           <div>
-          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-fg-muted">
-            <span className="size-1.5 rounded-full bg-[#1fa855]" aria-hidden="true" />
-            {profile.availability}
+          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs font-medium text-fg-muted">
+            <span className="relative flex size-2" aria-hidden="true">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#1fa855] opacity-60 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-[#1fa855]" />
+            </span>
+            {profile.availability} First call is free.
           </p>
           <h1 className="mt-6 max-w-3xl text-4xl leading-[1.05] font-bold tracking-[-0.035em] text-fg sm:text-5xl xl:text-7xl">
             I build and run production web apps for Indian businesses.
@@ -68,13 +106,55 @@ export default function HomePage() {
             {profile.proof} Based in Hyderabad.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <ContactButtons location="hero" />
+            <ContactButtons
+              location="hero"
+              message={profile.freeCall.message}
+              whatsappLabel={profile.freeCall.label}
+            />
             <Link href="/work" className={buttonStyles.secondary}>
               See my work
             </Link>
           </div>
+          <dl className="mt-10 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-6 sm:grid-cols-4">
+            {heroStats.map((stat) => (
+              <div key={stat.label} style={{ "--card-accent": stat.accent } as React.CSSProperties}>
+                <dt className="sr-only">{stat.label}</dt>
+                <dd>
+                  <span className="metric-value block text-2xl font-bold tracking-tight xl:text-3xl">{stat.value}</span>
+                  <span className="mt-1 block text-xs leading-snug text-fg-muted" aria-hidden="true">
+                    {stat.label}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
           </div>
           <StackHero />
+        </Container>
+      </section>
+
+      {/* Now */}
+      <section aria-label="What I'm doing now" className="pb-8">
+        <Container>
+          <ul className="grid gap-3 md:grid-cols-3">
+            {now.map((item) => (
+              <li key={item.label}>
+                <Link
+                  href={item.href}
+                  style={{ "--tone": item.accent } as React.CSSProperties}
+                  className="now-card group flex h-full flex-col rounded-2xl border p-5 transition-colors"
+                >
+                  <span className="tone-heading flex items-center gap-2 text-xs font-bold">
+                    <span className="tone-dot size-1.5 rounded-full" aria-hidden="true" />
+                    {item.label}
+                  </span>
+                  <span className="mt-2 font-semibold text-fg">{item.title}</span>
+                  <span className="mt-1 text-sm leading-relaxed text-fg-muted">{item.body}</span>
+                  <ArrowRightIcon className="mt-3 size-4 text-fg-subtle transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
@@ -160,18 +240,29 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* How I work */}
+      {/* How it works */}
       <section aria-labelledby="how-heading" className="pb-20">
         <Container>
-          <SectionHeading id="how-heading" eyebrow="Process" title="How I work" />
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {howIWork.map((step) => (
-              <li key={step.title} className="rounded-xl border border-border bg-surface/70 p-5">
-                <p className="font-semibold text-fg">{step.title}</p>
+          <SectionHeading
+            id="how-heading"
+            eyebrow="How it works"
+            title="From first message to live site"
+            intro="Four steps, and you always know what happens next."
+          />
+          <ol className="process mt-12 grid gap-8 md:grid-cols-4 md:gap-6">
+            {steps.map((step, i) => (
+              <li key={step.title} className="process-step relative">
+                <span className="process-num grid size-10 place-items-center rounded-full text-sm font-bold">{i + 1}</span>
+                <p className="mt-4 text-lg font-semibold text-fg">{step.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-fg-muted">{step.body}</p>
+                <p className="mt-3 text-sm font-medium text-accent">{step.get}</p>
               </li>
             ))}
-          </ul>
+          </ol>
+          <p className="mt-10 max-w-2xl text-sm leading-relaxed text-fg-subtle">
+            I use AI-assisted development to deliver faster, and I review, test and take responsibility for every line
+            that ships.
+          </p>
         </Container>
       </section>
 
