@@ -1,3 +1,4 @@
+import type React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,8 +28,12 @@ export default function WorkPage() {
 
         <ul className="mt-14 space-y-16 sm:space-y-24">
           {projects.map((p, i) => (
-            <li key={p.slug} className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
-              <Tilt className={i % 2 ? "md:order-2" : ""}>
+            <li
+              key={p.slug}
+              style={{ "--card-accent": p.accent } as React.CSSProperties}
+              className="grid items-center gap-8 md:grid-cols-2 md:gap-12"
+            >
+              <Tilt className={`!h-auto [&>*]:!h-auto ${i % 2 ? "md:order-2" : ""}`}>
                 <Link
                   href={`/work/${p.slug}`}
                   className="block overflow-hidden rounded-2xl border border-border bg-bg-subtle shadow-xl shadow-black/5"
@@ -46,7 +51,7 @@ export default function WorkPage() {
               </Tilt>
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <p className="text-sm font-medium text-accent">{p.tagline}</p>
+                  <p className="card-accent-text text-sm font-medium">{p.tagline}</p>
                   {p.status ? (
                     <span className="rounded-full bg-primary-soft px-2 py-0.5 text-xs font-medium text-accent">
                       {p.status}
@@ -61,6 +66,12 @@ export default function WorkPage() {
                 <p className="mt-1 text-sm text-fg-subtle">
                   {p.role}, {p.timeline}
                 </p>
+                {p.metric ? (
+                  <p className="mt-5 flex items-baseline gap-2">
+                    <span className="metric-value text-4xl font-bold tracking-tight">{p.metric.value}</span>
+                    <span className="text-sm text-fg-muted">{p.metric.label}</span>
+                  </p>
+                ) : null}
                 <p className="mt-4 leading-relaxed text-fg-muted">{p.outcome}</p>
                 <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Tech stack">
                   {p.stack.map((s) => (

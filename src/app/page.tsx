@@ -55,16 +55,16 @@ export default function HomePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <Container className="relative grid items-center gap-4 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:py-24">
+        <Container className="relative grid items-center gap-4 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:py-24 xl:py-28">
           <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-fg-muted">
             <span className="size-1.5 rounded-full bg-[#1fa855]" aria-hidden="true" />
             {profile.availability}
           </p>
-          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.05] font-bold tracking-[-0.035em] text-fg sm:text-5xl xl:text-6xl">
+          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.05] font-bold tracking-[-0.035em] text-fg sm:text-5xl xl:text-7xl">
             I build and run production web apps for Indian businesses.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted xl:text-xl">
             {profile.proof} Based in Hyderabad.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -79,26 +79,28 @@ export default function HomePage() {
       </section>
 
       {/* Work */}
-      <section aria-labelledby="work-heading" className="py-20">
-        <Container>
-          <SectionHeading
-            id="work-heading"
-            eyebrow="Selected work"
-            title="Real products, live on the web"
-            intro="No mock-ups. You can open every one of these right now."
-          />
-        </Container>
-        <div className="mt-4">
-          <ProjectCarousel label="Projects">
-            {projects.map((p) => (
-              <li key={p.slug} className="w-[86%] max-w-[460px] shrink-0 snap-start sm:w-[60%]">
-                <Tilt>
-                  <ProjectCard project={p} />
-                </Tilt>
-              </li>
-            ))}
-          </ProjectCarousel>
-        </div>
+      <section aria-labelledby="work-heading" className="py-12">
+        <ProjectCarousel
+          label="Projects"
+          header={
+            <Container>
+              <SectionHeading
+                id="work-heading"
+                eyebrow="Selected work"
+                title="Real products, live on the web"
+                intro="No mock-ups. You can open every one of these right now."
+              />
+            </Container>
+          }
+        >
+          {projects.map((p) => (
+            <li key={p.slug} className="w-[min(86vw,420px)] shrink-0 sm:w-[clamp(560px,64vw,1000px)]">
+              <Tilt>
+                <ProjectCard project={p} wide />
+              </Tilt>
+            </li>
+          ))}
+        </ProjectCarousel>
       </section>
 
       {/* Services teaser */}

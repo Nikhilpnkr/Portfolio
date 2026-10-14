@@ -7,7 +7,7 @@ export function SiteFooter() {
   const wa = whatsappLink("Hi Nikhil, I found you through your portfolio.");
   return (
     <footer data-print-hide className="mt-24 border-t border-border bg-bg-subtle/80">
-      <div className="mx-auto grid max-w-5xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
+      <div className="mx-auto grid w-full max-w-[88rem] gap-8 px-5 py-12 sm:px-8 md:grid-cols-3 lg:px-12">
         <div>
           <p className="font-semibold text-fg">{brand.name}</p>
           <p className="mt-2 text-sm text-fg-muted">
@@ -66,7 +66,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <div className="border-t border-border">
-        <p className="mx-auto max-w-5xl px-4 py-5 text-xs text-fg-subtle sm:px-6">
+        <p className="mx-auto w-full max-w-[88rem] px-5 py-5 text-xs text-fg-subtle sm:px-8 lg:px-12">
           © 2026 {brand.name}. Built with AI-assisted development.
           {process.env.NEXT_PUBLIC_GA_ID
             ? " This site uses Google Analytics to count visits and contact clicks."

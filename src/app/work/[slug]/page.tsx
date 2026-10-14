@@ -1,3 +1,4 @@
+import type React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -47,7 +48,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           mentions: { "@type": "WebSite", name: project.name, url: project.liveUrl },
         }}
       />
-      <article>
+      <article style={{ "--card-accent": project.accent } as React.CSSProperties}>
         <header className="border-b border-border bg-bg-subtle/60">
           <Container className="py-14 sm:py-20">
             <nav aria-label="Breadcrumb" className="mb-4 text-sm text-fg-subtle">
@@ -59,6 +60,12 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
             <Eyebrow>{project.tagline}</Eyebrow>
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-fg sm:text-5xl">{project.name}</h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-fg-muted">{project.outcome}</p>
+            {project.metric ? (
+              <p className="mt-6 flex items-baseline gap-3">
+                <span className="metric-value text-5xl font-bold tracking-tight">{project.metric.value}</span>
+                <span className="text-base text-fg-muted">{project.metric.label}</span>
+              </p>
+            ) : null}
 
             <dl className="mt-10 grid gap-6 rounded-xl border border-border bg-surface p-6 sm:grid-cols-3">
               <div>

@@ -5,10 +5,10 @@ import { MailIcon, WhatsAppIcon } from "./icons";
 const base =
   "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors";
 export const buttonStyles = {
-  primary: `${base} bg-primary text-primary-fg hover:bg-primary-hover`,
+  primary: `${base} btn-primary text-primary-fg`,
   secondary: `${base} border border-border bg-surface text-fg hover:border-primary hover:text-accent`,
-  invertedPrimary: `${base} bg-primary-fg text-primary hover:opacity-90`,
-  invertedSecondary: `${base} border border-primary-fg/40 text-primary-fg hover:bg-primary-fg/10`,
+  invertedPrimary: `${base} bg-white text-[#0f4c5c] shadow-lg shadow-black/20 hover:bg-white/90`,
+  invertedSecondary: `${base} border border-white/40 text-white hover:bg-white/10`,
 };
 
 type Props = {

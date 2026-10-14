@@ -1,3 +1,4 @@
+import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/content/projects";
@@ -5,22 +6,39 @@ import { Chip } from "./ui";
 import { ArrowRightIcon, ExternalIcon } from "./icons";
 import { TrackedLink } from "./tracked-link";
 
-export function ProjectCard({ project, priority = false }: { project: Project; priority?: boolean }) {
+export function ProjectCard({
+  project,
+  priority = false,
+  wide = false,
+}: {
+  project: Project;
+  priority?: boolean;
+  // Landscape layout (image beside text) from the sm breakpoint up.
+  wide?: boolean;
+}) {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-shadow hover:shadow-lg hover:shadow-black/5">
-      <Link href={`/work/${project.slug}`} className="block overflow-hidden border-b border-border bg-bg-subtle" tabIndex={-1} aria-hidden="true">
+    <article
+      style={{ "--card-accent": project.accent } as React.CSSProperties}
+      className={`project-card group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface ${wide ? "sm:grid sm:grid-cols-[1.1fr_1fr]" : ""}`}
+    >
+      <Link
+        href={`/work/${project.slug}`}
+        className={`block overflow-hidden border-b border-border bg-bg-subtle ${wide ? "sm:border-r sm:border-b-0" : ""}`}
+        tabIndex={-1}
+        aria-hidden="true"
+      >
         <Image
           src={project.cover}
           alt=""
           placeholder="blur"
           priority={priority}
-          sizes="(min-width: 1024px) 330px, (min-width: 768px) 50vw, 100vw"
-          className="aspect-[16/10] w-full object-cover object-left-top"
+          sizes={wide ? "(min-width: 640px) 36vw, 86vw" : "(min-width: 768px) 33vw, 100vw"}
+          className={`aspect-[16/10] w-full object-cover object-left-top ${wide ? "sm:h-full sm:aspect-auto" : ""}`}
         />
       </Link>
       <div className="flex flex-1 flex-col p-6">
         <div className="flex flex-wrap items-center gap-2">
-          <p className="text-sm font-medium text-accent">{project.tagline}</p>
+          <p className="card-accent-text text-sm font-medium">{project.tagline}</p>
           {project.status ? (
             <span className="rounded-full bg-primary-soft px-2 py-0.5 text-xs font-medium text-accent">{project.status}</span>
           ) : null}
@@ -31,6 +49,12 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
           </Link>
         </h3>
         <p className="mt-1 text-sm text-fg-subtle">{project.role}</p>
+        {project.metric ? (
+          <p className="mt-4 flex items-baseline gap-2">
+            <span className="metric-value text-3xl font-bold tracking-tight">{project.metric.value}</span>
+            <span className="text-sm text-fg-muted">{project.metric.label}</span>
+          </p>
+        ) : null}
         <p className="mt-3 text-sm leading-relaxed text-fg-muted">{project.outcome}</p>
         <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Tech stack">
           {project.stack.slice(0, 5).map((s) => (

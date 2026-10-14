@@ -16,7 +16,7 @@ export function SiteHeader() {
       data-print-hide
       className="sticky top-0 z-40 border-b border-border/70 bg-bg/85 backdrop-blur supports-[backdrop-filter]:bg-bg/70"
     >
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-16 w-full max-w-[88rem] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight text-fg">
           <span
             aria-hidden="true"

@@ -10,6 +10,9 @@ export type Project = {
   outcome: string;
   role: string;
   status?: string;
+  metric?: { value: string; label: string };
+  // The product's own brand colour, used for its card accents.
+  accent: string;
   timeline: string;
   liveUrl: string;
   liveLabel: string;
@@ -26,9 +29,11 @@ export const projects: Project[] = [
     outcome:
       "A live pharmacy on web and Android, with Indian drug regulations enforced in code, from prescription review to dispatch.",
     role: "Sole developer, and also lead operations",
+    metric: { value: "500+", label: "orders handled through the platform" },
     timeline: "March 2026 – present",
     liveUrl: "https://supracyn.in",
     liveLabel: "supracyn.in",
+    accent: "#0e8a86",
     stack: ["Medusa.js v2", "TanStack Start", "React 19", "PostgreSQL", "Redis", "Capacitor", "Railway"],
     cover: supramedsHome,
     coverAlt: "Suprameds homepage: generic medicines at 50–80% off, with search and prescription upload",
@@ -40,9 +45,11 @@ export const projects: Project[] = [
     outcome:
       "Replaces paper ledgers for agricultural warehouses with live stock tracking, automated rent billing and a self-service farmer portal.",
     role: "Freelance build for Sri Lakshmi Warehouse",
+    metric: { value: "20,000", label: "bag capacity managed in the live warehouse" },
     timeline: "December 2025 – present",
     liveUrl: "https://grainflow.vercel.app",
     liveLabel: "grainflow.vercel.app",
+    accent: "#1f7ae0",
     stack: ["Next.js 16", "TypeScript", "Supabase", "PostgreSQL RLS", "Razorpay", "Capacitor", "Vercel"],
     cover: grainflowHome,
     coverAlt: "GrainFlow landing page: smart inventory for modern agriculture",
@@ -55,9 +62,11 @@ export const projects: Project[] = [
       "One app for a 72-acre organic farm near Hyderabad: a phone-first console for livestock and crops, and a storefront where every pack has a QR code back to its source.",
     role: "Sole developer",
     status: "In development",
+    metric: { value: "72 acres", label: "of farm run from one app" },
     timeline: "April 2026 – present",
     liveUrl: "https://farmheaven-web.vercel.app",
     liveLabel: "farmheaven-web.vercel.app",
+    accent: "#3d8a4f",
     stack: ["Next.js 15", "React 19", "Supabase", "PostgreSQL + PostGIS", "TanStack Query", "Sentry", "Vercel"],
     cover: farmheavenHome,
     coverAlt: "FarmHeaven storefront: real food from a real farm, 72 acres outside Hyderabad",
