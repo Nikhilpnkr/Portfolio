@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 
 const highlights: Record<string, string[]> = {
   suprameds: [
-    "Sole developer of a licensed online pharmacy, live on web and Android, with 500+ orders handled. Also lead operations.",
+    "Sole developer of a licensed online pharmacy, live on web and Android, handling 1,000+ orders a month. Also lead operations.",
     "Extended Medusa.js v2 with 18 custom domain modules: prescriptions, dispensing, batch inventory, RBAC, compliance and more.",
     "Enforced Indian pharmacy regulations in backend workflow hooks: Schedule X block, pharmacist sign-off for Schedule H/H1, MRP ceilings, DPDP consent and audit logs.",
     "Built batch inventory with FEFO allocation, expiry tracking and recalls, and RBAC with 25 roles and around 65 permissions.",
     "Server-rendered TanStack Start storefront, packaged as an Android app with Capacitor. CI with type-checks, tests, builds and a Docker build on every push.",
   ],
   grainflow: [
-    "Built a multi-tenant warehouse management SaaS for Sri Lakshmi Warehouse as a freelance project, on Next.js 16 and Supabase. It runs their 20,000-bag warehouse.",
+    "Built a multi-tenant warehouse management SaaS for Sri Lakshmi Warehouse as a freelance project, on Next.js 16 and Supabase. It runs their large-scale warehouse.",
     "Isolated tenants with PostgreSQL row-level security driven by a single access function, including gated access to materialized views.",
     "Wrote a duration-based rent billing engine, atomic bulk payment allocation, and trigger-based stock reconciliation.",
     "Shipped a farmer portal with OTP login, Razorpay payment links over SMS with verified webhooks, and an Android app.",

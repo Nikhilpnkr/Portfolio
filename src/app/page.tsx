@@ -42,8 +42,8 @@ const steps = [
 
 const heroStats = [
   { value: "3", label: "live products", accent: "#0f4c5c" },
-  { value: "500+", label: "pharmacy orders handled", accent: "#0e8a86" },
-  { value: "20,000", label: "warehouse bags managed", accent: "#1f7ae0" },
+  { value: "1,000+", label: "pharmacy orders a month", accent: "#0e8a86" },
+  { value: "Large-scale", label: "warehouse run on GrainFlow", accent: "#1f7ae0" },
   { value: "72 acres", label: "of farm on one app", accent: "#3d8a4f" },
 ];
 

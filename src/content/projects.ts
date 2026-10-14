@@ -29,7 +29,7 @@ export const projects: Project[] = [
     outcome:
       "A live pharmacy on web and Android, with Indian drug regulations enforced in code, from prescription review to dispatch.",
     role: "Sole developer, and also lead operations",
-    metric: { value: "500+", label: "orders handled through the platform" },
+    metric: { value: "1,000+", label: "orders a month through the platform" },
     timeline: "March 2026 – present",
     liveUrl: "https://supracyn.in",
     liveLabel: "supracyn.in",
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     outcome:
       "Replaces paper ledgers for agricultural warehouses with live stock tracking, automated rent billing and a self-service farmer portal.",
     role: "Freelance build for Sri Lakshmi Warehouse",
-    metric: { value: "20,000", label: "bag capacity managed in the live warehouse" },
+    metric: { value: "Large-scale", label: "warehouse running on it every day" },
     timeline: "December 2025 – present",
     liveUrl: "https://grainflow.vercel.app",
     liveLabel: "grainflow.vercel.app",
