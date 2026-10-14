@@ -14,6 +14,13 @@ export function SiteFooter() {
             The studio of {profile.name}, {profile.role.toLowerCase()} in {profile.location}.
           </p>
           <p className="mt-1 text-sm text-fg-muted">{profile.availability}</p>
+          <address className="mt-4 text-sm leading-relaxed text-fg-subtle not-italic">
+            {profile.address.lines.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
+          </address>
         </div>
         <nav aria-label="Footer">
           <ul className="grid grid-cols-2 gap-2 text-sm">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { profile, SITE_URL } from "@/content/profile";
+import { postalAddress, profile, SITE_URL } from "@/content/profile";
 import { Container, Eyebrow } from "@/components/ui";
 import { ContactSection } from "@/components/contact-section";
 import { JsonLd } from "@/components/json-ld";
@@ -24,7 +24,7 @@ export default function AboutPage() {
             "@type": "Person",
             name: profile.name,
             jobTitle: profile.role,
-            address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressCountry: "IN" },
+            address: postalAddress,
             sameAs: [profile.github],
           },
         }}

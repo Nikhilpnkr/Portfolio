@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { profile, skills, SITE_URL } from "@/content/profile";
+import { postalAddress, profile, skills, SITE_URL } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { packages } from "@/content/packages";
 import { Container, SectionHeading, Chip } from "@/components/ui";
@@ -44,7 +44,7 @@ export default function HomePage() {
           url: SITE_URL,
           jobTitle: profile.role,
           email: `mailto:${profile.email}`,
-          address: { "@type": "PostalAddress", addressLocality: "Hyderabad", addressCountry: "IN" },
+          address: postalAddress,
           sameAs: [profile.github],
           knowsAbout: skills.flatMap((s) => s.items).slice(0, 12),
         }}

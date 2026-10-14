@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { packages, paymentTerms } from "@/content/packages";
-import { profile, SITE_URL, whatsappLink, mailtoLink } from "@/content/profile";
+import { postalAddress, profile, SITE_URL, whatsappLink, mailtoLink } from "@/content/profile";
 import { Container, Eyebrow } from "@/components/ui";
 import { buttonStyles } from "@/components/contact-buttons";
 import { TrackedLink } from "@/components/tracked-link";
@@ -28,6 +28,9 @@ export default function ServicesPage() {
           "@type": "ProfessionalService",
           name: "DevDen Labs",
           url: `${SITE_URL}/services`,
+          address: postalAddress,
+          telephone: `+${profile.whatsapp}`,
+          email: profile.email,
           areaServed: [
             { "@type": "City", name: "Hyderabad" },
             { "@type": "Country", name: "India" },

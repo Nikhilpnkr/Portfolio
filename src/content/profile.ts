@@ -27,7 +27,28 @@ export const profile = {
   github: "https://github.com/Nikhilpnkr",
   availability: "Open to freelance projects and full-stack roles.",
   freelanceUrl: process.env.NEXT_PUBLIC_FREELANCE_URL ?? "",
+  address: {
+    lines: [
+      "6th Floor, 241/C (242/C), ESI Hospital Back Side",
+      "BK Guda Park, SR Nagar, Vengalrao Nagar",
+      "Hyderabad 500038, Telangana, India",
+    ],
+    street: "6th Floor, 241/C (242/C), ESI Hospital Back Side, BK Guda Park, SR Nagar, Vengalrao Nagar",
+    locality: "Hyderabad",
+    region: "Telangana",
+    postalCode: "500038",
+    country: "IN",
+  },
 } as const;
+
+export const postalAddress = {
+  "@type": "PostalAddress",
+  streetAddress: profile.address.street,
+  addressLocality: profile.address.locality,
+  addressRegion: profile.address.region,
+  postalCode: profile.address.postalCode,
+  addressCountry: profile.address.country,
+};
 
 export const skills: { group: string; items: string[] }[] = [
   {
