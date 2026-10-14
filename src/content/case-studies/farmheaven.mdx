@@ -1,0 +1,49 @@
+import home from "../../../public/work/farmheaven-home.png";
+
+## The problem
+
+A 72-acre organic farm outside Hyderabad runs dairy (cows and buffaloes), goats and sheep, poultry and rotating organic crops. All of it has to be recorded: which animal gave how much milk, which one is on medication, what was planted on which plot. On top of that, the farm wants to sell directly to families in the city, who want proof the food is what the label says.
+
+Generic farm apps cover one piece at a time, and none of them connect the cowshed to the customer's doorstep.
+
+## What I'm building
+
+I'm the **sole developer** of FarmHeaven: one Next.js app with three parts.
+
+- **Farmer console**: phone-first screens for daily work. Phone-OTP login, guided onboarding that sets up the farm in one step, and a livestock registry. Crops and the other modules are being built in phases.
+- **Super-admin console**: a table browser for managing the whole system.
+- **Storefront**: the public site with a product catalogue, ordering over WhatsApp, a "meet the farm" story page, and **QR traceability pages** that show the journey of each pack.
+- **Database**: Supabase on PostgreSQL 17 with PostGIS for plot boundaries. Around 60 tables, more than 100 row-level security policies, and reference data for 7 species, 30 Indian breeds and 26 crops.
+- **Quality**: TypeScript strict mode, Zod-validated forms, automated tests, Sentry error tracking across every runtime, and CI on every push.
+
+<Figure src={home} alt="FarmHeaven storefront homepage: real food from a real farm, 72 acres outside Hyderabad" caption="The storefront at farmheaven-web.vercel.app." />
+
+## Hard problems I solved
+
+<Problem title="1. Food safety enforced by the database">
+
+When an animal is treated with certain medicines, its milk must not be sold until the withdrawal period ends. That can't depend on someone remembering to check.
+
+I wrote an **automatic quarantine trigger**. When a treatment with a withdrawal period is recorded, the animal's milk is hidden from dispatch until the period is over, whatever screen or person tries to send it.
+
+</Problem>
+
+<Problem title="2. Seven roles, one database">
+
+Owners, managers, accountants, vets, agronomists, farm workers and customers all touch the same data, but each should see and change only their part.
+
+I designed a role capability matrix and put it into more than 100 row-level security policies. The rules live in the database, so a bug in a screen can't leak data or let someone edit what they shouldn't.
+
+</Problem>
+
+<Problem title="3. Designed for a phone in a cowshed">
+
+Farm staff record milk on a phone with wet hands, and customers scan QR codes on their phones. I designed every screen for 375px first: 44px tap targets, large inputs that don't trigger zoom, and sticky primary buttons.
+
+The storefront's animated, 3D-style touches use plain SVG and CSS with no extra JavaScript, and they turn off for people who prefer reduced motion.
+
+</Problem>
+
+## Where it is now
+
+The storefront and marketing pages are live. The farmer console has login, onboarding and the livestock registry, and the next phases add flocks, crops and more. IoT sensors and automation come later, once the manual workflows have proved themselves.

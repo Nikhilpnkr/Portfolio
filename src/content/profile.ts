@@ -4,7 +4,7 @@
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://nikhilpnkr.vercel.app";
 
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919573299175";
 
 export const profile = {
   name: "Nikhil Kumar",
@@ -14,9 +14,9 @@ export const profile = {
   pitch:
     "I build and run production web apps for Indian businesses, from a licensed online pharmacy to multi-tenant SaaS.",
   proof:
-    "Sole developer of Suprameds, a live online pharmacy, and builder of GrainFlow, a multi-tenant warehouse SaaS.",
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "nikhilpnkr@gmail.com",
-  // Digits only, with country code, e.g. 919876543210. Empty hides WhatsApp buttons.
+    "Sole developer of Suprameds, a live online pharmacy. Builder of GrainFlow, a multi-tenant warehouse SaaS, and FarmHeaven, a farm-to-table platform.",
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "nikhilpnkr@gmail.com",
+  // Digits only, with country code. Overridable with NEXT_PUBLIC_WHATSAPP_NUMBER.
   whatsapp: whatsappNumber.replace(/\D/g, ""),
   github: "https://github.com/Nikhilpnkr",
   availability: "Open to freelance projects and full-stack roles.",
@@ -34,7 +34,7 @@ export const skills: { group: string; items: string[] }[] = [
   },
   {
     group: "Data",
-    items: ["PostgreSQL", "Supabase (Auth, RLS, Storage)", "Redis", "Zod"],
+    items: ["PostgreSQL", "PostGIS", "Supabase (Auth, RLS, Storage)", "Redis", "Zod"],
   },
   {
     group: "Mobile",

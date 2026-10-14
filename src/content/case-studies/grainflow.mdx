@@ -5,11 +5,11 @@ import dashboard from "../../../public/work/grainflow-dashboard.png";
 
 Agricultural warehouses in India store grain for many farmers and traders at once, often across thousands of bags and multiple lots. Most still run on paper ledgers. Working out rent by storage duration, tracking part-withdrawals and chasing dues by hand is slow and causes disputes.
 
-The client wanted software that one warehouse could run on day one, and that could be sold to many warehouses as a subscription.
+Sri Lakshmi Warehouse wanted software they could run on day one, and that could be sold to many warehouses as a subscription.
 
 ## What I built
 
-I built GrainFlow as a **freelance project for a client**: a multi-tenant SaaS where each warehouse sees only its own data.
+I built GrainFlow as a **freelance project for Sri Lakshmi Warehouse**: a multi-tenant SaaS where each warehouse sees only its own data.
 
 - **Multi-tenant model**: warehouses, users and roles (Super Admin, Owner, Admin, Manager, Staff), with tenant isolation enforced in PostgreSQL row-level security.
 - **Inventory**: inflow and outflow per customer, commodity and lot, QR code labels, and bulk outflow with FIFO or manual per-record allocation.
@@ -54,4 +54,4 @@ Payment allocation runs as a single **atomic database function**. Lot stock is r
 
 ## How the engagement worked
 
-The client brought the domain knowledge: how warehouses charge rent and what farmers and staff need. I turned that into the product, deployed it on Vercel, and have kept shipping improvements in regular releases since December 2025.
+Sri Lakshmi Warehouse brought the domain knowledge: how warehouses charge rent and what farmers and staff need. I turned that into the product, deployed it on Vercel, and have kept shipping improvements in regular releases since December 2025.

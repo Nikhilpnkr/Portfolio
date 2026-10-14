@@ -82,10 +82,10 @@ export default function HomePage() {
           <SectionHeading
             id="work-heading"
             eyebrow="Selected work"
-            title="Two real products, both live"
-            intro="No mock-ups. Both are in production and you can open them right now."
+            title="Real products, live on the web"
+            intro="No mock-ups. You can open every one of these right now."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((p, i) => (
               <ProjectCard key={p.slug} project={p} priority={i === 0} />
             ))}

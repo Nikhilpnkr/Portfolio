@@ -14,12 +14,17 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
           alt=""
           placeholder="blur"
           priority={priority}
-          sizes="(min-width: 1024px) 480px, (min-width: 768px) 50vw, 100vw"
+          sizes="(min-width: 1024px) 330px, (min-width: 768px) 50vw, 100vw"
           className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
         />
       </Link>
       <div className="flex flex-1 flex-col p-6">
-        <p className="text-sm font-medium text-accent">{project.tagline}</p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-sm font-medium text-accent">{project.tagline}</p>
+          {project.status ? (
+            <span className="rounded-full bg-primary-soft px-2 py-0.5 text-xs font-medium text-accent">{project.status}</span>
+          ) : null}
+        </div>
         <h3 className="mt-1 text-xl font-semibold tracking-tight text-fg">
           <Link href={`/work/${project.slug}`} className="hover:text-accent">
             {project.name}

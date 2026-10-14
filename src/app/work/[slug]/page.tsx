@@ -31,7 +31,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
   if (!project) notFound();
 
   const { default: Content } = await import(`@/content/case-studies/${project.slug}.mdx`);
-  const next = projects.find((p) => p.slug !== project.slug);
+  const next = projects[(projects.indexOf(project) + 1) % projects.length];
 
   return (
     <>
@@ -67,7 +67,10 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               </div>
               <div>
                 <dt className="text-xs font-semibold tracking-wider text-fg-subtle uppercase">Timeline</dt>
-                <dd className="mt-1 text-sm font-medium text-fg">{project.timeline}</dd>
+                <dd className="mt-1 text-sm font-medium text-fg">
+                  {project.timeline}
+                  {project.status ? <span className="text-fg-subtle"> · {project.status}</span> : null}
+                </dd>
               </div>
               <div>
                 <dt className="text-xs font-semibold tracking-wider text-fg-subtle uppercase">Live</dt>

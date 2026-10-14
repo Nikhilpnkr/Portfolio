@@ -49,12 +49,20 @@ export default function AboutPage() {
               <Link href="/work/grainflow" className="font-medium text-accent hover:underline">
                 GrainFlow
               </Link>{" "}
-              for a client: a multi-tenant SaaS that replaces paper ledgers for agricultural warehouses, with automated
-              rent billing, a farmer portal and an Android app.
+              for Sri Lakshmi Warehouse: a multi-tenant SaaS that replaces paper ledgers for agricultural warehouses,
+              with automated rent billing, a farmer portal and an Android app.
+            </p>
+            <p>
+              I&apos;m also building{" "}
+              <Link href="/work/farmheaven" className="font-medium text-accent hover:underline">
+                FarmHeaven
+              </Link>
+              , a farm management platform and storefront for a 72-acre organic farm near Hyderabad, where every pack of
+              food links back to the animal or plot it came from.
             </p>
             <p>
               I work with AI-assisted development. It lets me move fast as one person, but I still review, test and take
-              responsibility for everything that ships. Both products run on typed code, automated tests and CI.
+              responsibility for everything that ships. Everything I build runs on typed code, automated tests and CI.
             </p>
             <p>
               Right now I&apos;m {profile.availability.charAt(0).toLowerCase() + profile.availability.slice(1)} If you run a

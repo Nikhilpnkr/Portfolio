@@ -26,6 +26,12 @@ const highlights: Record<string, string[]> = {
     "Shipped a farmer portal with OTP login, Razorpay payment links over SMS with verified webhooks, and an Android app.",
     "More than 350 automated tests (Vitest), Playwright end-to-end specs, and Sentry monitoring.",
   ],
+  farmheaven: [
+    "Building a farm management platform and direct-to-consumer storefront for a 72-acre organic farm, as one Next.js app with farmer, admin and storefront route groups.",
+    "Designed a Supabase/PostgreSQL schema of around 60 tables with PostGIS and more than 100 row-level security policies across 7 roles.",
+    "Enforced food safety in the database: an automatic quarantine trigger keeps milk from animals under medicine withdrawal out of dispatch.",
+    "Shipped phone-OTP onboarding, a livestock registry, and QR traceability pages that link each pack to its animal or plot.",
+  ],
 };
 
 export default function ResumePage() {
@@ -60,7 +66,7 @@ export default function ResumePage() {
           <p className="mt-2 leading-relaxed text-fg-muted print:text-black">
             Full-stack developer who builds and runs production web apps. Sole developer of a live online pharmacy that
             enforces Indian drug regulations in code, and builder of a multi-tenant warehouse SaaS delivered as a freelance
-            project. Works in TypeScript across React, Node.js and PostgreSQL, with AI-assisted development, automated
+            project, and builder of a farm-to-table platform. Works in TypeScript across React, Node.js and PostgreSQL, with AI-assisted development, automated
             tests and CI.
           </p>
         </section>

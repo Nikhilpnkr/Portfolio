@@ -9,6 +9,6 @@ export default function Image() {
   return renderOgCard({
     eyebrow: "Full-stack developer · Hyderabad",
     title: "I build and run production web apps for Indian businesses.",
-    footer: `${profile.name} · Suprameds · GrainFlow`,
+    footer: `${profile.name} · Suprameds · GrainFlow · FarmHeaven`,
   });
 }
