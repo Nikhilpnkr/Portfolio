@@ -48,7 +48,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
         }}
       />
       <article>
-        <header className="border-b border-border bg-bg-subtle">
+        <header className="border-b border-border bg-bg-subtle/60">
           <Container className="py-14 sm:py-20">
             <nav aria-label="Breadcrumb" className="mb-4 text-sm text-fg-subtle">
               <Link href="/work" className="hover:text-accent">

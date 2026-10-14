@@ -5,6 +5,9 @@ import { projects } from "@/content/projects";
 import { packages } from "@/content/packages";
 import { Container, SectionHeading, Chip } from "@/components/ui";
 import { ProjectCard } from "@/components/project-card";
+import { ProjectCarousel } from "@/components/project-carousel";
+import { StackHero } from "@/components/stack-hero";
+import { Tilt } from "@/components/tilt";
 import { ContactButtons, buttonStyles } from "@/components/contact-buttons";
 import { ContactSection } from "@/components/contact-section";
 import { ArrowRightIcon } from "@/components/icons";
@@ -51,17 +54,14 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60rem_30rem_at_80%_-10%,var(--primary-soft),transparent)]"
-        />
-        <Container className="relative py-20 sm:py-28">
+      <section className="relative overflow-hidden">
+        <Container className="relative grid items-center gap-4 py-14 sm:py-20 lg:grid-cols-[1.1fr_1fr] lg:py-24">
+          <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-fg-muted">
             <span className="size-1.5 rounded-full bg-[#1fa855]" aria-hidden="true" />
             {profile.availability}
           </p>
-          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.1] font-bold tracking-tight text-fg sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 max-w-3xl text-4xl leading-[1.05] font-bold tracking-[-0.035em] text-fg sm:text-5xl xl:text-6xl">
             I build and run production web apps for Indian businesses.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-fg-muted">
@@ -73,6 +73,8 @@ export default function HomePage() {
               See my work
             </Link>
           </div>
+          </div>
+          <StackHero />
         </Container>
       </section>
 
@@ -85,16 +87,22 @@ export default function HomePage() {
             title="Real products, live on the web"
             intro="No mock-ups. You can open every one of these right now."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((p, i) => (
-              <ProjectCard key={p.slug} project={p} priority={i === 0} />
-            ))}
-          </div>
         </Container>
+        <div className="mt-4">
+          <ProjectCarousel label="Projects">
+            {projects.map((p) => (
+              <li key={p.slug} className="w-[86%] max-w-[460px] shrink-0 snap-start sm:w-[60%]">
+                <Tilt>
+                  <ProjectCard project={p} />
+                </Tilt>
+              </li>
+            ))}
+          </ProjectCarousel>
+        </div>
       </section>
 
       {/* Services teaser */}
-      <section aria-labelledby="services-heading" className="border-y border-border bg-bg-subtle py-20">
+      <section aria-labelledby="services-heading" className="border-y border-border bg-bg-subtle/70 py-20">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <SectionHeading
@@ -148,15 +156,14 @@ export default function HomePage() {
       <section aria-labelledby="how-heading" className="pb-20">
         <Container>
           <SectionHeading id="how-heading" eyebrow="Process" title="How I work" />
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {howIWork.map((step, i) => (
-              <li key={step.title} className="rounded-xl border border-border p-5">
-                <span className="text-sm font-semibold text-accent">0{i + 1}</span>
-                <p className="mt-2 font-semibold text-fg">{step.title}</p>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {howIWork.map((step) => (
+              <li key={step.title} className="rounded-xl border border-border bg-surface/70 p-5">
+                <p className="font-semibold text-fg">{step.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-fg-muted">{step.body}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </Container>
       </section>
 

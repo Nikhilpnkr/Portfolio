@@ -15,7 +15,7 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
           placeholder="blur"
           priority={priority}
           sizes="(min-width: 1024px) 330px, (min-width: 768px) 50vw, 100vw"
-          className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+          className="aspect-[16/10] w-full object-cover object-left-top"
         />
       </Link>
       <div className="flex flex-1 flex-col p-6">

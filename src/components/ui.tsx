@@ -5,7 +5,7 @@ export function Container({ children, className = "" }: { children: ReactNode; c
 }
 
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="text-xs font-semibold tracking-[0.14em] text-accent uppercase">{children}</p>;
+  return <p className="text-sm font-semibold text-accent">{children}</p>;
 }
 
 export function SectionHeading({

@@ -71,7 +71,6 @@ html {
 }
 
 body {
-  background: var(--bg);
   color: var(--fg);
 }
 
@@ -138,5 +137,293 @@ body {
   body {
     background: #fff;
     color: #000;
+  }
+}
+
+/* ---------- Site background (all pages) ---------- */
+html {
+  background: var(--bg);
+}
+body {
+  background: transparent;
+}
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.site-bg-glow {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  opacity: var(--glow-opacity);
+  will-change: transform;
+}
+.site-bg-glow-a {
+  top: -35vmax;
+  right: -20vmax;
+  background: radial-gradient(closest-side, var(--glow-a), transparent);
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+.site-bg-glow-b {
+  bottom: -40vmax;
+  left: -25vmax;
+  background: radial-gradient(closest-side, var(--glow-b), transparent);
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+.site-bg-grid {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  bottom: -10%;
+  height: 70%;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(700px) rotateX(62deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(to top, black 10%, transparent 75%);
+  animation: grid-flow 18s linear infinite;
+}
+:root {
+  --glow-a: #9fd3dd;
+  --glow-b: #c9e4d8;
+  --glow-opacity: 0.55;
+  --grid-line: rgb(15 76 92 / 0.09);
+}
+[data-theme="dark"] {
+  --glow-a: #155e6f;
+  --glow-b: #123c4a;
+  --glow-opacity: 0.7;
+  --grid-line: rgb(124 196 210 / 0.08);
+}
+@keyframes drift-a {
+  to {
+    transform: translate(-12vmax, 10vmax) scale(1.1);
+  }
+}
+@keyframes drift-b {
+  to {
+    transform: translate(14vmax, -8vmax) scale(1.15);
+  }
+}
+@keyframes grid-flow {
+  to {
+    background-position: 0 56px;
+  }
+}
+
+/* ---------- Hero: exploded full-stack scene ---------- */
+.stack-scene {
+  --tx: 0;
+  --ty: 0;
+  position: relative;
+  height: 480px;
+  perspective: 1400px;
+  display: grid;
+  place-items: center;
+}
+.stack {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  margin-top: 120px;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(58deg + var(--ty) * -10deg)) rotateZ(calc(-38deg + var(--tx) * 12deg));
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.stack-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  border: 1px solid var(--layer-border);
+  background: var(--layer-bg);
+  box-shadow: 0 30px 60px -30px rgb(6 36 44 / 0.45);
+  transform: translateZ(calc(var(--i) * 84px));
+  animation: lift 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both, bob 6s ease-in-out 1.4s infinite alternate;
+  animation-delay: calc(var(--i) * 90ms), calc(1.4s + var(--i) * 300ms);
+  padding: 16px 16px 32px;
+  overflow: hidden;
+}
+.stack-layer-top {
+  background: var(--primary);
+  border-color: transparent;
+}
+.stack-label {
+  position: absolute;
+  left: 16px;
+  bottom: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-text);
+}
+.stack-layer-top .stack-label {
+  color: var(--primary-fg);
+}
+:root {
+  --layer-bg: rgb(255 255 255 / 0.82);
+  --layer-border: rgb(15 76 92 / 0.18);
+  --layer-ink: rgb(15 76 92 / 0.18);
+}
+[data-theme="dark"] {
+  --layer-bg: rgb(19 29 34 / 0.85);
+  --layer-border: rgb(124 196 210 / 0.22);
+  --layer-ink: rgb(124 196 210 / 0.22);
+}
+@keyframes lift {
+  from {
+    transform: translateZ(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateZ(calc(var(--i) * 84px));
+    opacity: 1;
+  }
+}
+@keyframes bob {
+  to {
+    transform: translateZ(calc(var(--i) * 84px + 10px));
+  }
+}
+.stack-db {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.stack-db span {
+  height: 22px;
+  border-radius: 5px;
+  background: var(--layer-ink);
+}
+.stack-db span:nth-child(5n + 2) {
+  background: var(--accent-text);
+  opacity: 0.55;
+}
+.stack-code span {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--layer-ink);
+  margin-bottom: 9px;
+}
+.stack-code span:nth-child(3) {
+  background: var(--accent-text);
+  opacity: 0.6;
+}
+.stack-web {
+  border-radius: 10px;
+  border: 1px solid var(--layer-border);
+  overflow: hidden;
+}
+.stack-web-bar {
+  display: flex;
+  gap: 5px;
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--layer-border);
+}
+.stack-web-bar i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--layer-ink);
+}
+.stack-web-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 8px;
+}
+.stack-web-body span {
+  height: 50px;
+  border-radius: 6px;
+  background: var(--layer-ink);
+}
+.stack-web-body span:first-child {
+  background: var(--accent-text);
+  opacity: 0.5;
+}
+.stack-phone {
+  margin-left: auto;
+  margin-right: 18px;
+  width: 64px;
+  height: 104px;
+  margin-top: -6px;
+  border-radius: 14px;
+  border: 2px solid rgb(255 255 255 / 0.7);
+  padding: 10px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stack-phone span {
+  height: 14px;
+  border-radius: 4px;
+  background: rgb(255 255 255 / 0.35);
+}
+.stack-phone span:first-child {
+  height: 30px;
+  background: rgb(255 255 255 / 0.6);
+}
+.stack-shadow {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: 320px;
+  height: 60px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(6 36 44 / 0.28), transparent);
+}
+@media (max-width: 640px) {
+  .stack-scene {
+    height: 330px;
+  }
+  .stack {
+    scale: 0.82;
+    margin-top: 40px;
+  }
+  .stack-shadow {
+    bottom: 10px;
+  }
+}
+
+/* ---------- Card tilt ---------- */
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  perspective: 1000px;
+  height: 100%;
+}
+.tilt > * {
+  height: 100%;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Carousel ---------- */
+.carousel {
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-bg-glow,
+  .site-bg-grid,
+  .stack-layer {
+    animation: none !important;
+  }
+  .stack,
+  .tilt > * {
+    transform: none;
+  }
+  .stack {
+    transform: rotateX(58deg) rotateZ(-38deg);
   }
 }

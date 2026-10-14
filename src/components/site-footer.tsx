@@ -6,7 +6,7 @@ import { navItems } from "./site-header";
 export function SiteFooter() {
   const wa = whatsappLink("Hi Nikhil, I found you through your portfolio.");
   return (
-    <footer data-print-hide className="mt-24 border-t border-border bg-bg-subtle">
+    <footer data-print-hide className="mt-24 border-t border-border bg-bg-subtle/80">
       <div className="mx-auto grid max-w-5xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
           <p className="font-semibold text-fg">{brand.name}</p>

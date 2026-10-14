@@ -67,7 +67,7 @@ export default function ServicesPage() {
           {packages.map((pkg) => {
             const wa = whatsappLink(`Hi Nikhil, I'm interested in the ${pkg.name} package.`);
             return (
-              <li key={pkg.name} className="flex flex-col rounded-2xl border border-border bg-surface p-6">
+              <li key={pkg.name} className="flex flex-col rounded-2xl border border-border bg-surface/85 p-6">
                 <h2 className="text-lg font-semibold text-fg">{pkg.name}</h2>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-accent">{pkg.price}</p>
                 {pkg.note ? <p className="mt-1 text-sm font-medium text-fg-subtle">{pkg.note}</p> : null}
@@ -100,7 +100,7 @@ export default function ServicesPage() {
           })}
         </ul>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-bg-subtle p-6">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-bg-subtle/70 p-6">
           <p className="text-sm text-fg-muted">
             <span className="font-semibold text-fg">Payment terms:</span> {paymentTerms}
           </p>
