@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { profile, SITE_URL } from "@/content/profile";
+import { brand, profile, SITE_URL } from "@/content/profile";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
@@ -19,15 +19,15 @@ const isProduction = process.env.VERCEL_ENV === "production";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${profile.name}, full-stack developer in Hyderabad`,
-    template: `%s · ${profile.name}`,
+    default: `${brand.name} · ${profile.name}, full-stack developer in Hyderabad`,
+    template: `%s · ${brand.name}`,
   },
   description: profile.pitch,
   authors: [{ name: profile.name, url: SITE_URL }],
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: profile.name,
+    siteName: brand.name,
     url: "/",
   },
   twitter: { card: "summary_large_image" },

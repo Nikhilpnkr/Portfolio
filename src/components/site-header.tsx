@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { profile } from "@/content/profile";
+import { brand } from "@/content/profile";
 import { ThemeToggle } from "./theme";
 import { MobileNav } from "./mobile-nav";
 
@@ -22,9 +22,9 @@ export function SiteHeader() {
             aria-hidden="true"
             className="grid size-8 place-items-center rounded-lg bg-primary text-xs font-bold text-primary-fg"
           >
-            NK
+            {brand.mark}
           </span>
-          <span>{profile.name}</span>
+          <span>{brand.name}</span>
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">

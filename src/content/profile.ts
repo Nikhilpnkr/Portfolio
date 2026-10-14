@@ -2,9 +2,15 @@
 // resumes all read from here. Every claim must also appear in content/claims.md.
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://nikhilpnkr.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://devdenlabs.vercel.app";
 
 const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919573299175";
+
+export const brand = {
+  name: "DevDen Labs",
+  mark: "DL",
+  tagline: "Websites, stores and apps for Indian businesses",
+} as const;
 
 export const profile = {
   name: "Nikhil Kumar",
@@ -14,7 +20,7 @@ export const profile = {
   pitch:
     "I build and run production web apps for Indian businesses, from a licensed online pharmacy to multi-tenant SaaS.",
   proof:
-    "Sole developer of Suprameds, a live online pharmacy. Builder of GrainFlow, a multi-tenant warehouse SaaS, and FarmHeaven, a farm-to-table platform.",
+    "DevDen Labs is the studio of Nikhil Kumar: sole developer of Suprameds, a live online pharmacy, and builder of GrainFlow, a multi-tenant warehouse SaaS, and FarmHeaven, a farm-to-table platform.",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "nikhilpnkr@gmail.com",
   // Digits only, with country code. Overridable with NEXT_PUBLIC_WHATSAPP_NUMBER.
   whatsapp: whatsappNumber.replace(/\D/g, ""),

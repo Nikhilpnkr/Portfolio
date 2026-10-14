@@ -1,6 +1,6 @@
-# Nikhil Kumar · Portfolio
+# DevDen Labs
 
-Personal portfolio and freelance services site. Live at https://nikhilpnkr.vercel.app.
+Portfolio and freelance studio site of Nikhil Kumar. Live at https://devdenlabs.vercel.app.
 
 Built with Next.js 16 (App Router, Cache Components), React 19, TypeScript, Tailwind CSS v4 and MDX.
 Every route is statically prerendered.

@@ -1,5 +1,5 @@
 import { getProject, projects } from "@/content/projects";
-import { profile } from "@/content/profile";
+import { brand } from "@/content/profile";
 import { ogSize, renderOgCard } from "@/lib/og";
 
 export const alt = "Case study";
@@ -16,6 +16,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   return renderOgCard({
     eyebrow: "Case study",
     title: project ? `${project.name}: ${project.tagline}` : "Case study",
-    footer: `${profile.name} · ${project?.role ?? ""}`,
+    footer: `${brand.name} · ${project?.role ?? ""}`,
   });
 }

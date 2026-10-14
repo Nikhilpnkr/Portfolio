@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const ogSize = { width: 1200, height: 630 };
 
 // Shared Open Graph card: teal background, eyebrow, title and footer line.
-export function renderOgCard({ eyebrow, title, footer }: { eyebrow: string; title: string; footer: string }) {
+export function renderOgCard({ eyebrow, title, footer, mark = "DL" }: { eyebrow: string; title: string; footer: string; mark?: string }) {
   return new ImageResponse(
     (
       <div
@@ -34,7 +34,7 @@ export function renderOgCard({ eyebrow, title, footer }: { eyebrow: string; titl
               fontWeight: 700,
             }}
           >
-            NK
+            {mark}
           </div>
           <div style={{ fontSize: 28, opacity: 0.85, letterSpacing: 2, textTransform: "uppercase" }}>{eyebrow}</div>
         </div>

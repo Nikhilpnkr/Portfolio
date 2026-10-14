@@ -26,7 +26,7 @@ export default function ServicesPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
-          name: `${profile.name}, web development`,
+          name: "DevDen Labs",
           url: `${SITE_URL}/services`,
           areaServed: [
             { "@type": "City", name: "Hyderabad" },

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { mailtoLink, profile, whatsappLink } from "@/content/profile";
+import { brand, mailtoLink, profile, whatsappLink } from "@/content/profile";
 import { TrackedLink } from "./tracked-link";
 import { navItems } from "./site-header";
 
@@ -9,9 +9,9 @@ export function SiteFooter() {
     <footer data-print-hide className="mt-24 border-t border-border bg-bg-subtle">
       <div className="mx-auto grid max-w-5xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <p className="font-semibold text-fg">{profile.name}</p>
+          <p className="font-semibold text-fg">{brand.name}</p>
           <p className="mt-2 text-sm text-fg-muted">
-            {profile.role} in {profile.location}.
+            The studio of {profile.name}, {profile.role.toLowerCase()} in {profile.location}.
           </p>
           <p className="mt-1 text-sm text-fg-muted">{profile.availability}</p>
         </div>
@@ -60,7 +60,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border">
         <p className="mx-auto max-w-5xl px-4 py-5 text-xs text-fg-subtle sm:px-6">
-          © 2026 {profile.name}. Built with AI-assisted development.
+          © 2026 {brand.name}. Built with AI-assisted development.
           {process.env.NEXT_PUBLIC_GA_ID
             ? " This site uses Google Analytics to count visits and contact clicks."
             : null}
